@@ -1127,7 +1127,7 @@ input[type="submit"]:hover {
 
 /* --- POPUP PROFILE --- */
 
-.profile-popup-backdrop {
+-backdrop {
 
   position: absolute;
 
@@ -1141,13 +1141,13 @@ input[type="submit"]:hover {
 
 }
 
-.profile-popup-backdrop.show {
+-backdrop.show {
 
   pointer-events: auto;
 
 }
 
-.profile-popup {
+ {
 
   background: #fff;
 
@@ -3616,7 +3616,8 @@ flex-direction: column;
   .profile-popup
   {
     scale: calc(70%);
-    margin-top: -40px;
+    margin-top: -20px;
+      margin-left:120px;
 
 
 
@@ -3786,7 +3787,7 @@ padding: 0;
   }
     .profile-popup
     {
-        margin-top:-50px;
+        margin-top:-0px;
         margin-lèt:120px;
         
     }

@@ -112,11 +112,6 @@ let headerInnerHTML = `
 
             </form>
 
-             <section class ="anhdangki">
-
-            <img src ="Img/bannerdocdai.png" class="anhbannerthunho">
-
-            </section>
 
         </section>
 

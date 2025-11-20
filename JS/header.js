@@ -216,13 +216,9 @@ let headerInnerHTML = `
               <span class="hamburger-line"></span>
 
           </button>
-          <section id="logo">
 
-            <img src="Img/LogoKhongMau.png" alt="Logo" />
 
-          </section>
-
-    <div class="notification-wrapper">
+           <div class="notification-wrapper">
         
         <i id="notification-toggle" class="fas fa-bell notification-icon"></i>
         <div class="submenu hidden">
@@ -244,6 +240,15 @@ let headerInnerHTML = `
 </div>
         </div>
     </div> 
+    
+          
+          <section id="logo">
+
+            <img src="Img/LogoKhongMau.png" alt="Logo" />
+
+          </section>
+
+   
 
           <!-- 
 

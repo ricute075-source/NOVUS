@@ -2905,9 +2905,7 @@ padding: 0;
 
   }
 
-    .submenu{
-      margin-left: 200px;
-   }
+
 
   #logo {
 
@@ -3644,8 +3642,8 @@ flex-direction: column;
 .submenu
 {
   scale: calc(80%);
-  margin-left: 100px;
-  margin-top: -20px;
+  margin-left: 10px;
+  margin-top: 9px;
 
 }
 
@@ -3786,6 +3784,12 @@ padding: 0;
 
 
   }
+    .profile-popup
+    {
+        margin-top:-50px;
+        margin-lèt:120px;
+        
+    }
 
 
 .nghel{

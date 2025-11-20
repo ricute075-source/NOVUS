@@ -42,7 +42,6 @@ body {
 
 #logo img {
   height: 83.5px;
-  margin-left:-10px;
 }
 
 #nav {
@@ -2462,6 +2461,105 @@ body.user-logged-in #hanhdong .header-icon-btn {
 
   .jobs-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  /* Điều chỉnh chung cho máy tính bảng và điện thoại */
+  .search-box {
+    width: 95%; /* Chiếm nhiều không gian hơn trên màn hình nhỏ */
+    height: 50px; /* Chiều cao nhỏ hơn */
+    margin: -25px auto 0 auto; /* Điều chỉnh margin cho phù hợp với chiều cao mới */
+    border-radius: 30px; /* Giảm độ bo góc */
+    padding: 0 5px; /* Giảm padding */
+  }
+
+  .search-input-wrapper {
+    padding-left: 10px; /* Giảm padding */
+  }
+
+  .search-icon {
+    font-size: 16px; /* Giảm kích thước icon */
+    margin-right: 8px;
+  }
+
+  .search-box input[type="text"] {
+    font-size: 15px; /* Giảm kích thước font */
+    padding: 8px 0;
+  }
+
+  .nuttimkiem {
+    width: 80px; /* Giảm chiều rộng nút */
+    height: 40px; /* Giảm chiều cao nút */
+    font-size: 14px; /* Giảm kích thước font nút */
+    margin-right: 4px;
+  }
+
+  .search-results {
+    border-radius: 8px; /* Giảm độ bo góc */
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Điều chỉnh riêng cho điện thoại di động */
+  .search-box {
+    width: 95%;
+    height: 44px; /* Chiều cao rất nhỏ gọn */
+    margin: -22px auto 0 auto;
+    border-radius: 25px;
+    padding: 0 4px;
+  }
+
+  .search-input-wrapper {
+    padding-left: 8px;
+  }
+
+  .search-icon {
+    margin-right: 6px;
+    font-size: 14px;
+  }
+
+  .search-box input[type="text"] {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+
+  .nuttimkiem {
+    width: 70px; /* Rất gọn */
+    height: 36px;
+    font-size: 13px;
+    margin-right: 3px;
+  }
+
+  /* Điều chỉnh kết quả tìm kiếm */
+  .search-results {
+    top: calc(100% + 5px); /* Gần thanh tìm kiếm hơn */
+    padding: 5px;
+  }
+
+  .search-results .result-item {
+    grid-template-columns: 36px 1fr; /* Thu nhỏ logo */
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .search-results .logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .search-results .title {
+    font-size: 14px;
+  }
+
+  .search-results .company {
+    font-size: 12px;
+  }
+
+  .search-results .meta {
+    font-size: 11px;
+    /* Có thể ẩn bớt meta nếu không cần thiết để giữ gọn */
+    /* display: none; */
   }
 }
 

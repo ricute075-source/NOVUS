@@ -42,6 +42,7 @@ body {
 
 #logo img {
   height: 83.5px;
+  margin-left:-10px;
 }
 
 #nav {

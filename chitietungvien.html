@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chi tiết hồ sơ ứng viên</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./CSS/main.css" />
+    <link rel="stylesheet" href="CSS/phanbodytrangchu.css" />
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f5f7;
+        color: #333;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .profile-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+      }
+
+      .card-header {
+        background: linear-gradient(135deg, #CBEEFF 0%, #5AC9FF 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        position: relative;
+      }
+      .card-header h1 { margin: 0; font-size: 24px; font-weight: 700; }
+      .card-header p { margin: 10px 0 0; opacity: 0.9; font-size: 16px; }
+      
+      .status-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.25);
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 15px;
+        border: 1px solid rgba(255,255,255,0.3);
+      }
+
+      .card-body { padding: 40px; }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .info-item h3 {
+        font-size: 14px;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .info-item p {
+        font-size: 18px;
+        font-weight: 500;
+        color: #111;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .full-width { grid-column: 1 / -1; }
+
+      .cover-letter {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #5AC9FF;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
+
+      .cv-preview {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: #eefbf3;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px dashed #5AC9FF;
+        margin-top: 10px;
+      }
+      .cv-icon { width: 40px; height: 40px; }
+      
+      .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 30px;
+      }
+
+      button {
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        font-size: 16px;
+      }
+      
+      .btn-back { background: #e0e0e0; color: #333; }
+      .btn-reject { background: #ffebee; color: #d32f2f; border: 1px solid #ffcdd2; }
+      .btn-approve { background: #5AC9FF; color: white; box-shadow: 0 4px 10px rgba(0, 177, 79, 0.3); }
+
+      button:hover { transform: translateY(-2px); opacity: 0.9; }
+      button:active { transform: translateY(0); }
+      .btn-reject:hover { background: #ffCDD2; }
+
+      .hidden { display: none !important; }
+
+      @media (max-width: 600px) {
+        .info-grid { grid-template-columns: 1fr; }
+        .action-buttons { flex-direction: column; }
+        button { width: 100%; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header></header>
+    <script src="./JS/header.js"></script>
+
+    <div class="container">
+      <div class="profile-card">
+        
+        <div class="card-header" id="headerBg">
+          <h1 id="uvName">Đang tải dữ liệu...</h1>
+          <p>Ứng tuyển vị trí: <strong id="jobTitle">...</strong></p>
+          <div class="status-tag" id="statusTag">Chờ duyệt</div>
+        </div>
+
+        <div class="card-body">
+          
+          <div class="info-grid">
+            <div class="info-item">
+              <h3>Email liên hệ</h3>
+              <p id="uvEmail">...</p>
+            </div>
+            <div class="info-item">
+              <h3>Số điện thoại<br>(vui lòng gọi trao đổi với ứng viên)</h3>
+              <p id="uvPhone">...</p>
+            </div>
+            <div class="info-item">
+              <h3>Thời gian nộp</h3>
+              <p id="submitTime">...</p>
+            </div>
+            <div class="info-item">
+              <h3>Công ty ứng tuyển</h3>
+              <p id="companyName">...</p>
+            </div>
+            
+
+
+            <div class="info-item full-width">
+              <h3>Thư giới thiệu</h3>
+              <div class="cover-letter" id="uvCover">
+                (Không có thư giới thiệu)
+              </div>
+            </div>
+          </div>
+
+          <div class="action-buttons" id="actionBtns">
+            <button class="btn-back" onclick="window.history.back()">← Quay lại</button>
+            <button class="btn-reject" id="btnReject" onclick="xuLyHoSo('TuChoi')">Từ chối hồ sơ</button>
+            <button class="btn-approve" id="btnApprove" onclick="xuLyHoSo('Duyet')">✓ Duyệt hồ sơ & Hẹn phỏng vấn</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+    <script src="./JS/footer.js"></script>
+
+<script>
+  // --- BIẾN TOÀN CỤC ---
+  window.currentAppData = null; 
+
+  // Lấy tham số URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Format ngày tháng
+  function formatDate(isoString) {
+    if (!isoString) return "Vừa xong";
+    try {
+        const date = new Date(isoString);
+        return date.toLocaleString('vi-VN');
+    } catch (e) { return isoString; }
+  }
+
+  // --- CẬP NHẬT GIAO DIỆN ---
+  function updateUIStatus(status) {
+    const tag = document.getElementById("statusTag");
+    const header = document.getElementById("headerBg");
+    const btnApprove = document.getElementById("btnApprove");
+    const btnReject = document.getElementById("btnReject");
+
+    if (status === 'approved') {
+        tag.innerText = "ĐÃ DUYỆT HỒ SƠ";
+        tag.style.background = "#4caf50"; 
+        header.style.background = "linear-gradient(135deg, #00b14f 0%, #008a3c 100%)";
+        btnApprove.classList.add("hidden");
+        btnReject.classList.add("hidden");
+    } else if (status === 'rejected') {
+        tag.innerText = "ĐÃ TỪ CHỐI";
+        tag.style.background = "#d32f2f"; 
+        header.style.background = "linear-gradient(135deg, #ff5252 0%, #d32f2f 100%)";
+        btnApprove.classList.add("hidden");
+        btnReject.classList.add("hidden");
+    } else {
+        tag.innerText = "CHỜ DUYỆT";
+        tag.style.background = "rgba(255,255,255,0.3)";
+        btnApprove.classList.remove("hidden");
+        btnReject.classList.remove("hidden");
+    }
+  }
+
+  // --- KHỞI TẠO ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const appId = getQueryParam("id");
+    let applications = JSON.parse(localStorage.getItem("applications") || "[]");
+    
+    if (appId) {
+        window.currentAppData = applications.find(a => a.id == appId);
+    }
+
+    // Dữ liệu Demo
+    if (!window.currentAppData) {
+        console.warn("Chế độ Demo.");
+        window.currentAppData = {
+            id: "demo", fullname: "Nguyễn Văn A (Demo)", email: "demo@gmail.com", phone: "0912345678",
+            jobTitle: "Lập trình viên", company: "Công ty Demo", cover: "Em rất mong được làm việc...",
+            time: new Date().toISOString(), cvName: "CV_Mau.pdf", status: 'pending',
+            candidateId: 'uv_demo', jobId: 'job_demo', ntdId: 'ADMIN_TEST' 
+        };
+    }
+
+    const data = window.currentAppData;
+    document.getElementById("uvName").innerText = data.fullname;
+    document.getElementById("uvEmail").innerText = data.email;
+    document.getElementById("uvPhone").innerText = data.phone;
+    document.getElementById("jobTitle").innerText = data.jobTitle;
+    document.getElementById("companyName").innerText = data.company;
+    document.getElementById("submitTime").innerText = formatDate(data.time);
+    document.getElementById("uvCover").innerText = data.cover || "(Không có thư giới thiệu)";
+    document.getElementById("cvName").innerText = data.cvName || "cv_file.pdf";
+
+    document.getElementById("cvLink").onclick = (e) => { e.preventDefault(); taiXuongCV(); };
+    updateUIStatus(data.status);
+  });
+
+  function taiXuongCV() {
+    const data = window.currentAppData;
+    if(!data) return;
+    const noiDung = `CV ỨNG VIÊN: ${data.fullname}\nEmail: ${data.email}\nSĐT: ${data.phone}\n...`;
+    const blob = new Blob([noiDung], { type: "text/plain;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "CV_" + data.fullname + ".txt"; 
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+
+  // --- HÀM GỬI THÔNG BÁO ---
+  function addNotificationForUser(recipientId, notif) {
+    if (!recipientId) return;
+    const key = 'notifs_' + recipientId;
+    try {
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.unshift(notif);
+      localStorage.setItem(key, JSON.stringify(arr.slice(0, 200)));
+      localStorage.setItem('trigger_reload_notif', Date.now().toString());
+    } catch (e) { console.warn(e); }
+  }
+
+  // --- HÀM XÓA THÔNG BÁO (Tìm và xóa) ---
+  function xoaThongBaoCu() {
+    const data = window.currentAppData;
+    let targetId = data.ntdId || localStorage.getItem('currentUserId');
+    if (!targetId || targetId === 'null') targetId = "ADMIN_TEST";
+
+    const potentialIds = new Set([targetId, localStorage.getItem('currentUserId'), 'ADMIN_TEST']);
+    
+    potentialIds.forEach(tId => {
+        if(!tId) return;
+        const ntdKey = 'notifs_' + tId;
+        const storedData = localStorage.getItem(ntdKey);
+        if (storedData) {
+            let ntdNotifs = JSON.parse(storedData);
+            const originalLength = ntdNotifs.length;
+            
+            // Lọc bỏ thông báo chứa ID của hồ sơ này
+            ntdNotifs = ntdNotifs.filter(n => {
+                if (n.link && n.link.includes(data.id)) return false;
+                if (n.message && n.message.includes(data.fullname) && n.title.includes("Hồ sơ")) return false;
+                return true;
+            });
+
+            if (ntdNotifs.length < originalLength) {
+                localStorage.setItem(ntdKey, JSON.stringify(ntdNotifs));
+                localStorage.setItem('trigger_reload_notif', Date.now().toString());
+                window.dispatchEvent(new Event('storage')); 
+            }
+        }
+    });
+  }
+
+  // ============================================================
+  // 🔥 LOGIC XỬ LÝ CHÍNH (ĐÃ LOẠI BỎ POPUP)
+  // ============================================================
+  function xuLyHoSo(hanhDong) {
+    const data = window.currentAppData;
+    if (!data) return;
+    
+    let applications = JSON.parse(localStorage.getItem("applications") || "[]");
+    const index = applications.findIndex(a => a.id == data.id);
+
+    // --- TRƯỜNG HỢP 1: DUYỆT HỒ SƠ ---
+    if (hanhDong === 'Duyet') {
+        if(confirm(`Xác nhận DUYỆT hồ sơ của ${data.fullname}?`)) {
+            // 1. Lưu trạng thái
+            if (index !== -1) {
+                applications[index].status = 'approved';
+                localStorage.setItem("applications", JSON.stringify(applications));
+            }
+            updateUIStatus('approved');
+
+            // 2. Gửi thông báo CHO ỨNG VIÊN (Dạng tin nhắn văn bản thường)
+            const sdtHR = "0909.123.456"; 
+            
+            // Thay vì Popup, ta ghi thẳng nội dung vào message
+            addNotificationForUser(data.candidateId, {
+                id: Date.now(),
+                title: "✅ Hồ sơ được duyệt!",
+                message: `Chúc mừng! Hồ sơ ${data.jobTitle} của bạn đã được duyệt. Vui lòng liên hệ SĐT: ${sdtHR} (Giờ hành chính) để nhận lịch phỏng vấn.`,
+                time: new Date().toISOString(),
+                isRead: false
+                // Không có thuộc tính 'link' -> Không sinh ra nút bấm
+            });
+
+            // 3. XÓA THÔNG BÁO CỦA NTD
+            xoaThongBaoCu();
+
+            alert(`✅ Đã duyệt hồ sơ thành công!`);
+
+            // 4. Hỏi đóng bài đăng
+            setTimeout(() => {
+                if(confirm(`Bạn có muốn ĐÓNG (XÓA) bài đăng "${data.jobTitle}" này không?`)) {
+                    let jobs = JSON.parse(localStorage.getItem("jobs") || "[]");
+                    let initialCount = jobs.length;
+                    jobs = jobs.filter(j => j.id !== data.jobId);
+                    if (jobs.length < initialCount) {
+                        localStorage.setItem("jobs", JSON.stringify(jobs));
+                        alert("✅ Đã đóng bài đăng tuyển dụng!");
+                        window.location.href = "index.html";
+                    }
+                }
+            }, 500);
+        }
+    } 
+    
+    // --- TRƯỜNG HỢP 2: TỪ CHỐI HỒ SƠ ---
+    else if (hanhDong === 'TuChoi') {
+        if(confirm(`Bạn có chắc muốn TỪ CHỐI ứng viên ${data.fullname}?`)) {
+            if (index !== -1) {
+                applications[index].status = 'rejected';
+                localStorage.setItem("applications", JSON.stringify(applications));
+            }
+            updateUIStatus('rejected');
+            
+            // Gửi thông báo văn bản thường
+            addNotificationForUser(data.candidateId, {
+                id: Date.now(), 
+                title: "Thông báo hồ sơ",
+                message: `Rất tiếc, hồ sơ vị trí ${data.jobTitle} của bạn chưa phù hợp. Chúng tôi đã lưu hồ sơ và sẽ liên hệ khi có vị trí khác.`,
+                time: new Date().toISOString(), 
+                isRead: false
+            });
+
+            xoaThongBaoCu();
+            
+            alert("🚫 Đã từ chối hồ sơ.");
+        }
+    }
+  }
+</script>
+
+    <script src="JS/nhac.js"></script>
+    <script src="JS/quanlyvieclam.js"></script>
+    <script src="JS/nutbam.js"></script>
+    <script src="JS/SuLyDangNhap.js"></script>
+    <script src="JS/DangNhapGG.js"></script>
+    <script src="JS/SuLyPopup.js"></script>
+
+  </body>
+</html>

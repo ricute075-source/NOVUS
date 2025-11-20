@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVUS - Đăng Bài Tuyển Dụng</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"/>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+        <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="CSS/QuanLyPopup.css" />
+    <link rel="stylesheet" href="CSS/phanbodytrangchu.css" />
+    <link rel="stylesheet" href="CSS/dangkyntd.css">
+
+
+    <header></header>
+    <script src="./JS/header.js"></script>
+
+    <main>
+        <div class="main-content">
+            <!-- Form đăng ký nhà tuyển dụng -->
+            <section class="form-section">
+                <h1>Đăng ký nhà tuyển dụng</h1>
+                <p class="form-subtitle">Đăng ký tài khoản để khám phá nguồn ứng viên tìm năng và khơi lạo tin tuyển dụng ngay hôm nay</p>
+                
+                <form>
+                    <!-- Tên đăng nhập và Mật khẩu -->
+                    <div class="form-row">
+                        <input type="text" placeholder="Tên đăng nhập" id="tdn">
+
+
+                    </div>
+                        <div class="form-row">
+
+                    <input type="password" placeholder="Mật khẩu" id="mk">
+                    <input type="password" placeholder="Nhập lại mật khẩu" id="nlmk">
+
+                    </div>
+                    <!-- Email và Số điện thoại -->
+                    <div class="form-row">
+                        <input type="email" placeholder="Email" id="em">
+                        <input type="tel" placeholder="Số điện thoại" id="phone">
+                    </div>
+
+                    <!-- Thông tin công ty -->
+                    <div class="form-group" >
+                        <label class="thongtinct">Thông tin công ty</label>
+                        <input type="text" placeholder="Tên công ty" class="tenct" id="tcy">
+                    </div>
+
+                    <!-- Người đại diện và Số điện thoại -->
+                    <div class="form-row">
+                        <input type="text" placeholder="Người đại diện" id="ndd">
+                        <input type="tel" placeholder="Số điện thoại" id="phonendd">
+                    </div>
+
+                    <!-- Số lượng nhân viên -->
+                    <div class="form-group">
+                        <select>
+                            <option>Số lượng nhân viên</option>
+                            <option>1-10 nhân viên</option>
+                            <option>11-50 nhân viên</option>
+                            <option>51-200 nhân viên</option>
+                            <option>Trên 200 nhân viên</option>
+                        </select>
+                    </div>
+
+
+
+                    <!-- Checkbox điều khoản -->
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span>Luôn nhận thông báo từ NOVUS</span>
+                        </label>
+                        <label class="checkbox-label checked">
+                            <input type="checkbox" checked required>
+                        <span class="tdy">Tôi đồng ý với   <a href="dieukhoan.html" class="ahr"> Chính sách </a> và <a href="quydinhbaomat.html" class="ahr"> Quy định bảo mật </a> của NOVUS</span>
+                        </label>
+                    </div>
+
+                    <!-- Nút đăng ký -->
+                    <button type="submit" class="btn-submit">ĐĂNG KÝ</button>
+                </form>
+            </section>
+
+            <!-- Thanh bên - Thông tin liên hệ -->
+            <aside class="sidebar">
+                <div class="success-card">
+                    <!-- Logo tròn -->
+                    <div class="logo-circle">
+                        <img src="Img/camap.png" alt="NOVUS" >
+                    </div>
+                    
+                    <!-- Tiêu đề -->
+                    <h2>THÀNH CÔNG</h2>
+                    <h3>TRONG TẦM TAY</h3>
+                    
+                    <!-- Mô tả ngắn -->
+                    <p class="description">NOVUS - Website tìm việc<br>làm hữu ích và nhanh chóng</p>
+                    
+                    <!-- Thông tin liên hệ -->
+                    <div class="contact">
+                        <p class="contact-title">Liên hệ với chúng tôi</p>
+                        <p><strong>Email:</strong> novustuyendung@gmail.com</p>
+                        <p><strong>SĐT:</strong> 0368284041</p>
+                        <p><strong>Địa chỉ:</strong><br>12 Nguyễn Văn Bảo, phường Hạnh Thông,<br>Thành phố Hồ Chí Minh</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+        <footer>
+    </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".form-section form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const username = form.querySelector('#tdn').value.trim();
+    const pw = form.querySelector('#mk').value.trim();
+    const pw2 = form.querySelector('#nlmk').value.trim();
+    const email = form.querySelector('#em').value.trim();
+    const phone = form.querySelector('#phone').value.trim();
+    const company = form.querySelector('#tcy').value.trim();
+    const representative = form.querySelector('#ndd').value.trim();
+    const fullname = representative;
+    const repPhone = form.querySelector('#phonendd').value.trim();
+    const staffCount = form.querySelector('select').value;
+
+    // kiểm tra mật khẩu
+    if (pw !== pw2) {
+      alert("❌ Mật khẩu nhập lại không khớp!");
+      return;
+    }
+
+    // kiểm tra email hợp lệ (không bắt buộc gmail)
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) {
+      alert("❌ Email không hợp lệ");
+      return;
+    }
+
+    // kiểm tra số điện thoại: chỉ số và 10-11 chữ số
+    const phoneRe = /^\d{10,11}$/;
+    if (!phoneRe.test(phone)) {
+      alert("❌ Số điện thoại phải có 10 hoặc 11 chữ số");
+      return;
+    }
+
+    // tạo object tài khoản nhà tuyển dụng
+    const record = {
+      username,
+      matkhau: pw,
+      email,
+      phone,
+      company,
+      representative,
+      repPhone,
+      staffCount,
+      role: "ntd",
+      fullname,
+      ngayDangKy: new Date().toISOString()
+    };
+
+    // chuẩn hóa để kiểm tra trùng
+    const normUsername = username.toLowerCase();
+    const normEmail = email.toLowerCase();
+    const normPhone = phone;
+
+    const key = "ntdList";
+    const current = JSON.parse(localStorage.getItem(key) || "[]");
+
+    if (current.find(r => (r.username || '').toLowerCase() === normUsername)) {
+      alert('❌ Tên đăng nhập đã tồn tại.');
+      return;
+    }
+    if (current.find(r => (r.email || '').toLowerCase() === normEmail)) {
+      alert('❌ Email đã được đăng ký.');
+      return;
+    }
+    if (current.find(r => (r.phone || '') === normPhone)) {
+      alert('❌ Số điện thoại đã được sử dụng.');
+      return;
+    }
+
+    // thêm vào danh sách
+    current.push(record);
+    localStorage.setItem(key, JSON.stringify(current));
+
+    // lưu thông tin đăng nhập hiện tại
+    localStorage.setItem("username", username);
+    localStorage.setItem("fullname", fullname);
+    localStorage.setItem("sdt", phone);
+    localStorage.setItem("email", email);
+    localStorage.setItem("role", "ntd");
+    localStorage.setItem("currentUserId", username); // để đồng bộ thông báo
+
+    alert("✅ Đăng ký thành công! Đây là tài khoản nhà tuyển dụng.");
+    form.reset();
+    window.location.href = "index.html";
+  });
+});
+</script>
+
+
+    <script src="../JS/footer.js"></script>
+
+    
+    <script src="JS/nhac.js"></script>
+    <script src="JS/quanlyvieclam.js"></script>
+
+    <script src="JS/nutbam.js"></script>
+    <script src="JS/SuLyDangNhap.js"></script>
+    <script src="JS/DangNhapGG.js"></script>
+    <script src="JS/SuLyPopup.js"></script>
+</body>
+</html>

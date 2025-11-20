@@ -1,0 +1,296 @@
+  <!DOCTYPE html>
+  <html lang="vi">
+    <head>
+          <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Đăng Bài Tuyển Dụng</title>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;800&display=swap"
+        rel="stylesheet"
+      />
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+
+      <link rel="stylesheet" href="/CSS/trangdangbai.css" />
+      <link rel="stylesheet" href="/CSS/main.css">
+          <link rel="stylesheet" href="CSS/QuanLyPopup.css" />
+    <link rel="stylesheet" href="CSS/phanbodytrangchu.css" />
+
+        <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+    </head>
+    
+    <body>
+      <header>
+      </header>
+    <script src="./JS/header.js"></script>
+      <div class="main-layout">
+        <div class="form-area">
+<form id="recruitForm">
+  <div class="section">
+    <h1>Đăng bài tuyển dụng</h1>
+
+    <p class="ttc"><strong>Thông Tin Chung</strong></p>
+    <br>
+
+    <div class="truocfg">
+      <div class="form-group">
+        <input id="title" type="text" placeholder="Tiêu đề tuyển dụng" />
+      </div>
+
+      <div class="logofile">
+        <input id="logoInput" class="ip" type="file" accept="image/*"  />
+        <label for="logoInput" class="file-btn">Chọn logo</label>
+        <span id="logoFileName" class="file-name">Chưa có logo</span>
+      </div>
+    </div>
+
+        <div class="form-group">
+      <input id="company" type="text" placeholder="Tên công ty" />
+    </div>
+
+        <div class="form-group" id="fg">
+    <h4 class="ml">Mức lương:</h4>
+
+
+      <div class="input-row">
+        <input id="salary" type="text" placeholder="Từ(hãy nhập thêm đơn vị VD:Triệu,...)" />
+      </div>
+    </div>
+
+
+<div class="form-group">
+  <label for="expiry">Ngày hết hạn tuyển dụng</label>
+  <input id="expiry" type="date"/>
+  <input id="rep"  type="text"  placeholder="Phẩn hồi trong bao lâu"/>
+</div>
+
+
+  <div class="form-group">
+      <label>Địa chỉ:</label>
+      <input id="address" type="text" placeholder="Địa chỉ cụ thể (số nhà, đường, ...)" s />
+    </div>
+
+
+  </div>
+
+  <div class="section">
+     <p class="ttc"><strong>Thông Tin Chi Tiết</strong></p>
+
+
+
+    <div class="divsemargin">
+      <div class="form-group">
+        <input id="location" type="text" placeholder="Vị trí làm việc"/>
+      <input id="employeeCount" type="number" min="1" placeholder="Số lượng cần tuyển" />
+    </div>
+    </div>
+    <div class="form-group">
+      <input id="phone" type="tel" placeholder="Số điện thoại nhà tuyển dụng" />
+      <input id="quymo" type="text" placeholder="Quy mô công việc(bao nhiêu người)" />
+    </div>
+
+
+      <div class="form-group">
+      <input id="field" type="text" placeholder="Lĩnh vực" />
+    </div>
+
+
+    <div class="form-group">
+      <input id="howtoapply" type="text" placeholder="Cách thức ứng tuyển" />
+    </div>
+
+
+
+
+
+    <div class="form-group">
+      <textarea id="jobDetail" class="chitietcv" placeholder="Mô tả công việc..." rows="6">
+</textarea>
+      <textarea id="request" class="chitietcv" placeholder="Yêu Cầu" rows="6"></textarea>
+      <textarea id="benefits" class="chitietcv" placeholder="Quyền Lợi" rows="6"></textarea>
+    </div>
+  </div>
+
+            <div class="checkbox-group">
+    <div class="checkbox-item">
+      <input type="checkbox" id="notify" />
+      <label for="notify">Luôn nhận thông báo từ NOVUS</label>
+    </div>
+
+    <div class="checkbox-item" >
+      <input type="checkbox" id="agree" required />
+      <label for="agree">
+      <strong><span class="sp">Tôi đồng ý với   <a href="dieukhoan.html" class="ahr"> Chính sách </a> và <a href="quydinhbaomat.html" class="ahr"> Quy định bảo mật </a> của NOVUS</span></strong>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button id="submitBtn" type="submit">Đăng tuyển</button>
+  </div>
+</form>
+
+<pre id="jsonOutput"></pre>
+          </form>
+        </div>
+
+        <div class="banner-right">
+          <img
+            src="Img/bannerdocdai.png" class="anhbanner"
+            alt="Banner tuyển dụng"
+          />
+        </div>
+      </div>
+
+
+
+      <script src="./JS/trangdangbai.js"></script>
+      <footer>
+      </footer>
+    <script src="./JS/footer.js"></script>
+
+    
+    <script src="JS/nhac.js"></script>
+    <script src="JS/nutbam.js"></script>
+    <script src="JS/SuLyDangNhap.js"></script>
+    <script src="JS/DangNhapGG.js"></script>
+    <script src="JS/SuLyPopup.js"></script>
+
+
+<script>
+  const logoInput = document.getElementById('logoInput');
+  const logoFileName = document.getElementById('logoFileName');
+
+  logoInput.addEventListener('change', function () {
+    const file = this.files && this.files[0];
+    if (!file) {
+      logoFileName.textContent = 'Chưa có tệp';
+      return;
+    }
+
+    if (!file.type || !file.type.startsWith('image/')) {
+      alert('Vui lòng chọn tệp ảnh (jpg, png, gif, ...).');
+      this.value = ''; 
+      logoFileName.textContent = 'Chưa có tệp';
+      return;
+    }
+    logoFileName.textContent = file.name;
+  });
+</script>
+
+<script>
+document.getElementById("recruitForm").onsubmit = async function (e) {
+  e.preventDefault();
+
+const tenCT = document.getElementById("title").value.trim() + " (chưa kiểm chứng)";
+  const tenCV = document.getElementById("company").value.trim();
+  const PHone = document.getElementById("phone").value.trim();
+  const soluongnv = document.getElementById("employeeCount").value ? Number(document.getElementById("employeeCount").value) : null;
+  const chitietcongviec = document.getElementById("jobDetail").value.trim();
+  const ngayhethang = document.getElementById("expiry").value || "";
+  const diachi = document.getElementById("address").value.trim();
+  const luong = document.getElementById("salary").value.trim();
+  const vitri = document.getElementById("location").value.trim();
+  const phanhoi = document.getElementById("rep").value.trim();
+  const quymo = document.getElementById("quymo").value.trim();
+  const linhvuc = document.getElementById("field").value.trim();
+  const cachthuc = document.getElementById("howtoapply").value.trim();
+  const yeucau = document.getElementById("request").value.trim();
+  const quyenloi = document.getElementById("benefits").value.trim();
+
+
+if (
+  !tenCT || !tenCV || !luong || !ngayhethang || !phanhoi || !diachi ||
+  !vitri || !soluongnv || !PHone || !quymo || !linhvuc || !cachthuc ||
+  !chitietcongviec || !yeucau || !quyenloi
+) {
+  alert("❌ Vui lòng điền đầy đủ tất cả các thông tin trước khi đăng tuyển.");
+  return;
+}
+
+
+
+  const id = 'job_' + Date.now();
+
+const job = {
+  id: id,
+  nghe: tenCT,
+  cty: tenCV,
+  diachi: diachi,
+  luong: luong,
+  vitri: vitri,
+  phanhoi: phanhoi || "Phản hồi trong 1 tuần",
+  dadang: new Date().toISOString(),
+  expiry: ngayhethang,
+  sdt: PHone,
+  soluongnhanvien: soluongnv,
+  chitietcongviec: chitietcongviec,
+  ntdId: localStorage.getItem('currentUserId'),
+  quymo: quymo,
+  linhvuc: linhvuc,
+  cachthuc: cachthuc,
+  yeucau: yeucau,
+  quyenloi: quyenloi,
+  duyet: false
+};
+
+  alert(
+    `✅ Đã đăng tuyển:\n` +
+    `- Công việc: ${tenCT}\n` +
+    `- Công ty: ${tenCV}\n` +
+    `- Địa điểm: ${diachi || "Không có"}\n` +
+    `- Lương: ${luong}\n` +
+    `- Chi tiết (tóm tắt): ${chitietcongviec.slice(0,120)}${chitietcongviec.length>120? "..." : ""}\n` +
+    `- Liên hệ: ${PHone ? " - " + PHone : ""}\n` +
+    `- Lĩnh vực: ${linhvuc}\n` +
+`- Cách ứng tuyển: ${cachthuc}\n` +
+`- Yêu cầu: ${yeucau.slice(0,60)}${yeucau.length>60?"...":""}\n` +
+`- Quyền lợi: ${quyenloi.slice(0,60)}${quyenloi.length>60?"...":""}\n` +
+
+    `Trạng thái: Chưa kiểm chứng`
+  );
+
+try {
+  const key = 'jobs';
+  const existing = JSON.parse(localStorage.getItem(key) || '[]');
+  if (!Array.isArray(existing)) existing = [];
+  existing.unshift(job);
+  localStorage.setItem(key, JSON.stringify(existing));
+} catch (err) {
+  console.warn('Lưu localStorage thất bại', err);
+}
+
+
+
+  const tiepTuc = confirm("Bạn có muốn đăng thêm bài?");
+  if (tiepTuc) {
+    this.reset();
+    const logoFileName = document.getElementById("logoFileName");
+    if (logoFileName) logoFileName.textContent = "Chưa có logo";
+  } else {
+
+    window.location.href = `Trangchitiet.html?id=${encodeURIComponent(job.id)}`;
+  }
+};
+</script>
+
+
+
+    </body>
+  </html>
+
+  

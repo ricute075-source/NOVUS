@@ -1,0 +1,539 @@
+/* --- Nhập font Inter VÀ Raleway từ Google Fonts --- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Raleway:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+
+
+
+/* --- Container chính của bài blog --- */
+.blog-container {
+  max-width: 1600px;
+  margin: 30px auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 0px;
+
+  /* Padding theo yêu cầu */
+  padding: 26px 137px 9px 137px;
+
+  /* ĐẶT TẤT CẢ THÀNH IN NGHIÊNG */
+  font-style: italic;
+
+  /* Font mặc định cho container là Raleway (kế thừa từ body) */
+}
+
+/* --- Định dạng Tiêu đề Đề mục (H1, H2, H3) --- */
+
+
+/* --- Thông tin đăng tải (dưới H1, trên Mục lục) --- */
+.post-meta {
+  /* Đặt lại font Inter cho phần này */
+  font-family: "Inter", sans-serif;
+
+  font-style: normal; /* ĐẶT LẠI LÀ 'NORMAL' (KHÔNG IN NGHIÊNG) */
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 400; /* Regular */
+  color: #000000; /* Màu đen */
+  margin-bottom: 25px;
+}
+
+.post-meta strong {
+  font-style: normal;
+  font-weight: 700; /* Cho tên tác giả đậm hơn */
+}
+
+/* --- Văn bản chi tiết (trong các section) --- */
+/* (Sẽ dùng font Raleway) */
+.blog-container > section p {
+  color: #000000; /* Màu đen */
+  font-size: 25px;
+  line-height: 64px;
+  text-align: justify; /* Căn lề đều 2 bên */
+
+  /* Kế thừa 'font-style: italic' từ .blog-container */
+  /* (Đã xóa 'font-style: italic' riêng ở đây) */
+}
+
+/* --- MỚI: Wrapper cho Mục Lục --- */
+.toc-wrapper {
+  max-width: 1164px; /* Giới hạn chiều rộng tối đa */
+  width: 100%; /* Chiếm 100% chiều rộng (đến max-width) */
+  margin-bottom: 30px; /* Di chuyển từ .table-of-contents */
+  display: flex;
+  align-items: stretch; /* Đảm bảo 2 cột cao bằng nhau */
+}
+
+/* MỚI: Đường thẳng bên trái mục lục */
+.toc-line {
+  width: 14px;
+  background-color: #8cbce0;
+  flex-shrink: 0; /* Không co lại */
+}
+
+/* --- Định dạng Mục Lục --- */
+.table-of-contents {
+  /* Đặt lại font Inter cho phần này */
+  font-family: "Inter", sans-serif;
+
+  background-color: #f3faff;
+  border: 2px solid #87b2d4;
+  padding: 20px 30px; /* Thêm padding bên trong */
+  margin-bottom: 0; /* ĐÃ CHUYỂN ra .toc-wrapper */
+  border-radius: 0px;
+
+  flex-grow: 1; /* Mục lục chiếm phần còn lại */
+
+  /* Kế thừa 'font-style: italic' từ .blog-container */
+  /* (Đã xóa 'font-style: normal' ở đây) */
+}
+
+/* Tiêu đề "MỤC LỤC" */
+.table-of-contents h2 {
+  font-weight: 700; /* Bold */
+  font-size: 30px;
+  color: #000000; /* THAY ĐỔI: Màu đen (thay vì xanh) */
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: none; /* Bỏ gạch chân trong mục lục */
+}
+
+.table-of-contents ol {
+  padding-left: 20px;
+  margin: 0;
+  list-style-position: inside; /* Đưa số vào trong */
+}
+
+/* Danh sách con (mục 1, 2, 3) */
+.table-of-contents ol ol {
+  padding-left: 30px; /* Thụt vào sâu hơn */
+  list-style-type: decimal; /* Đảm bảo là số 1, 2, 3 */
+}
+
+.table-of-contents li {
+  /* Độ cao dòng cho tất cả mục - GIẢM TỪ 64px */
+  line-height: 1.8; /* (Bạn có thể điều chỉnh giá trị này nếu muốn) */
+}
+
+/* Liên kết trong mục lục */
+.table-of-contents a {
+  text-decoration: none;
+  color: inherit; /* Lấy màu từ <li> cha */
+}
+
+/* Hover màu theo yêu cầu */
+.table-of-contents a:hover {
+  color: rgb(0, 114, 240);
+}
+
+/* Đề mục I, II, III (cấp 1) */
+.table-of-contents > ol > li > a {
+  font-weight: 600; /* Semi-bold */
+  font-size: 30px;
+}
+
+/* Đề mục 1, 2, 3 (cấp 2) */
+.table-of-contents > ol > li > ol > li > a {
+  font-weight: 300; /* Light */
+  font-size: 20px;
+}
+
+/* --- Hình ảnh & Lớp hỗ trợ --- */
+.post-image {
+  float: right;
+  width: 40%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 0px;
+  border: 1px solid #ddd;
+  /* Hình ảnh cũng sẽ không bị ảnh hưởng bởi font-style */
+}
+
+.clear-float {
+  clear: both;
+}
+
+/* --- Nhập font Inter VÀ Raleway từ Google Fonts --- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Raleway:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+
+/* --- Cài đặt chung --- */
+
+
+/* --- Container chính của bài blog --- */
+.blog-container {
+  max-width: 1600px;
+  margin: 30px auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 0px;
+
+  /* Padding theo yêu cầu */
+  padding: 26px 137px 9px 137px;
+
+  /* ĐẶT TẤT CẢ THÀNH IN NGHIÊNG */
+  font-style: italic;
+
+  /* Font mặc định cho container là Raleway (kế thừa từ body) */
+}
+
+/* --- Định dạng Tiêu đề Đề mục (H1, H2, H3) --- */
+/* (Sẽ dùng font Raleway) */
+h1,
+h2{
+  /* Màu chữ theo yêu cầu */
+  color: rgb(3, 121, 252);
+
+  /* Độ đậm extra-bold */
+  font-weight: 800;
+
+  /* Canh lề trái */
+  text-align: left;
+
+  /* Kế thừa 'font-style: italic' từ .blog-container */
+}
+
+/* Đề mục lớn */
+h1 {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Đề mục nhỏ (trong bài viết) */
+h2 {
+  font-size: 30px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+
+
+/* --- Thông tin đăng tải (dưới H1, trên Mục lục) --- */
+.post-meta {
+  /* Đặt lại font Inter cho phần này */
+  font-family: "Inter", sans-serif;
+
+  font-style: normal; /* ĐẶT LẠI LÀ 'NORMAL' (KHÔNG IN NGHIÊNG) */
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 400; /* Regular */
+  color: #000000; /* Màu đen */
+  margin-bottom: 25px;
+}
+
+.post-meta strong {
+  font-style: normal;
+  font-weight: 700; /* Cho tên tác giả đậm hơn */
+}
+
+/* --- Văn bản chi tiết (trong các section) --- */
+/* (Sẽ dùng font Raleway) */
+.blog-container > section p {
+  color: #000000; /* Màu đen */
+  font-size: 25px;
+  line-height: 64px;
+  text-align: justify; /* Căn lề đều 2 bên */
+
+  /* Kế thừa 'font-style: italic' từ .blog-container */
+  /* (Đã xóa 'font-style: italic' riêng ở đây) */
+}
+
+/* --- MỚI: Wrapper cho Mục Lục --- */
+.toc-wrapper {
+  max-width: 1164px; /* Giới hạn chiều rộng tối đa */
+  width: 100%; /* Chiếm 100% chiều rộng (đến max-width) */
+  margin-bottom: 30px; /* Di chuyển từ .table-of-contents */
+  display: flex;
+  align-items: stretch; /* Đảm bảo 2 cột cao bằng nhau */
+}
+
+/* MỚI: Đường thẳng bên trái mục lục */
+.toc-line {
+  width: 14px;
+  background-color: #8cbce0;
+  flex-shrink: 0; /* Không co lại */
+}
+
+/* --- Định dạng Mục Lục --- */
+.table-of-contents {
+  /* Đặt lại font Inter cho phần này */
+  font-family: "Inter", sans-serif;
+
+  background-color: #f3faff;
+  border: 2px solid #87b2d4;
+  padding: 20px 30px; /* Thêm padding bên trong */
+  margin-bottom: 0; /* ĐÃ CHUYỂN ra .toc-wrapper */
+  border-radius: 0px;
+
+  flex-grow: 1; /* Mục lục chiếm phần còn lại */
+
+  /* Kế thừa 'font-style: italic' từ .blog-container */
+  /* (Đã xóa 'font-style: normal' ở đây) */
+}
+
+/* Tiêu đề "MỤC LỤC" */
+.table-of-contents h2 {
+  font-weight: 700; /* Bold */
+  font-size: 30px;
+  color: #000000; /* THAY ĐỔI: Màu đen (thay vì xanh) */
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: none; /* Bỏ gạch chân trong mục lục */
+}
+
+.table-of-contents ol {
+  padding-left: 20px;
+  margin: 0;
+  list-style-position: inside; /* Đưa số vào trong */
+}
+
+/* Danh sách con (mục 1, 2, 3) */
+.table-of-contents ol ol {
+  padding-left: 30px; /* Thụt vào sâu hơn */
+  list-style-type: decimal; /* Đảm bảo là số 1, 2, 3 */
+}
+
+.table-of-contents li {
+  /* Độ cao dòng cho tất cả mục - GIẢM TỪ 64px */
+  line-height: 1.8; /* (Bạn có thể điều chỉnh giá trị này nếu muốn) */
+}
+
+/* Liên kết trong mục lục */
+.table-of-contents a {
+  text-decoration: none;
+  color: inherit; /* Lấy màu từ <li> cha */
+}
+
+/* Hover màu theo yêu cầu */
+.table-of-contents a:hover {
+  color: rgb(0, 114, 240);
+}
+
+/* Đề mục I, II, III (cấp 1) */
+.table-of-contents > ol > li > a {
+  font-weight: 600; /* Semi-bold */
+  font-size: 30px;
+}
+
+/* Đề mục 1, 2, 3 (cấp 2) */
+.table-of-contents > ol > li > ol > li > a {
+  font-weight: 300; /* Light */
+  font-size: 20px;
+}
+
+/* --- Hình ảnh & Lớp hỗ trợ --- */
+.post-image {
+  float: right;
+  width: 40%;
+  max-width: 350px; /* Thêm max-width để giữ kích thước gốc */
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 0px;
+  border: 1px solid #ddd;
+  /* Hình ảnh cũng sẽ không bị ảnh hưởng bởi font-style */
+}
+
+.clear-float {
+  clear: both;
+}
+/* ÉP LINK TRONG MỤC LỤC HIỂN THỊ 1 HÀNG */
+.table-of-contents a {
+  white-space: nowrap; /* Không xuống dòng */
+  display: block; /* Giữ layout từng mục */
+}
+/* CHỐNG VỠ KHUNG MỤC LỤC */
+.table-of-contents {
+  overflow-x: auto; /* Tự kéo ngang khi chữ dài */
+}
+/* RESET hoàn toàn style H1/H2/H3 bên trong mục lục */
+.table-of-contents h1,
+.table-of-contents h2,
+.table-of-contents h3 {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  color: #000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Danh sách trong mục lục hiển thị 1 hàng chuẩn */
+.table-of-contents li {
+  margin: 6px 0;
+  list-style-position: inside;
+  font-size: 18px;
+  font-style: normal !important;
+}
+
+/* Link mục lục: không xuống dòng lung tung */
+.table-of-contents a {
+  display: inline; /* Không block, không ép xuống dòng */
+  white-space: normal !important; /* Cho xuống dòng TỰ NHIÊN, không tách bậy */
+  color: #000 !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  text-decoration: none;
+}
+
+/* Nếu muốn hover xanh cho đẹp */
+.table-of-contents a:hover {
+  color: #0074ff !important;
+}
+
+/* GIỮ KHUNG MỤC LỤC GỌN KHÔNG TRÀN */
+.table-of-contents {
+  font-style: normal !important;
+}
+
+/* =================================================================== */
+/* === PHẦN BỔ SUNG: CSS RESPONSIVE === */
+/* =================================================================== */
+
+/* ----- 1. Breakpoint Lớn (Small Desktops / Large Tablets) ----- */
+/* Dưới 1300px: Bắt đầu giảm padding ngang */
+@media (max-width: 1300px) {
+  .blog-container {
+    padding: 26px 80px 9px 80px;
+  }
+}
+
+/* ----- 2. Breakpoint Trung bình (Tablets) ----- */
+/* Dưới 992px: Giảm padding và cỡ chữ */
+@media (max-width: 992px) {
+  .blog-container {
+    padding: 26px 40px 9px 40px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+  h2,
+  h3 {
+    font-size: 28px;
+  }
+
+  /* Giảm cỡ chữ văn bản (25px là quá lớn) và line-height (64px) */
+  .blog-container > section p {
+    font-size: 20px;
+    line-height: 1.8; /* Dùng tỷ lệ thay vì pixel cố định */
+  }
+
+  /* Giảm cỡ chữ mục lục */
+  .table-of-contents h2 {
+    font-size: 26px;
+  }
+  .table-of-contents > ol > li > a {
+    font-size: 26px;
+  }
+  .table-of-contents > ol > li > ol > li > a {
+    font-size: 18px;
+  }
+}
+
+/* ----- 3. Breakpoint Nhỏ (Mobile) ----- */
+/* Dưới 768px: Thay đổi layout chính */
+@media (max-width: 768px) {
+  .blog-container {
+    /* Cho blog chiếm toàn màn hình trên mobile */
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+
+    /* Padding tối thiểu cho di động */
+    padding: 20px 20px 9px 20px;
+  }
+
+  /* Giảm mạnh cỡ chữ cho dễ đọc trên mobile */
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 22px;
+  }
+
+  .post-meta {
+    font-size: 16px;
+  }
+
+  .blog-container > section p {
+    font-size: 16px; /* Cỡ chữ P tiêu chuẩn cho mobile */
+    line-height: 1.7; /* Line-height hợp lý hơn */
+
+    /* Bỏ căn lề đều (justify) trên mobile, vì nó tạo 'sông' xấu */
+    text-align: left;
+  }
+
+  /* ----- Xử lý Hình ảnh ----- */
+  .post-image {
+    float: none; /* Bỏ float */
+    width: 100%; /* Chiếm 100% chiều rộng */
+    max-width: 100%; /* Bỏ giới hạn max-width */
+    margin: 15px auto; /* Căn giữa và tạo khoảng cách */
+  }
+
+  /* ----- Xử lý Mục lục ----- */
+  .table-of-contents {
+    padding: 15px 20px; /* Giảm padding bên trong TOC */
+  }
+
+  .table-of-contents h2 {
+    font-size: 22px;
+  }
+
+  .table-of-contents > ol > li > a {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .table-of-contents > ol > li > ol > li > a {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Thụt lề mục lục con nhỏ lại */
+  .table-of-contents ol ol {
+    padding-left: 20px;
+  }
+}
+
+/* ----- 4. Breakpoint Rất Nhỏ (Small Mobile) ----- */
+@media (max-width: 480px) {
+  .blog-container {
+    padding: 15px 15px 9px 15px; /* Giảm padding tối đa */
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+
+  .blog-container > section p {
+    font-size: 15px;
+  }
+
+  .post-meta {
+    font-size: 14px;
+  }
+
+  /* Cỡ chữ mục lục nhỏ nhất */
+  .table-of-contents h2 {
+    font-size: 18px;
+  }
+  .table-of-contents > ol > li > a {
+    font-size: 18px;
+  }
+  .table-of-contents > ol > li > ol > li > a {
+    font-size: 15px;
+  }
+}

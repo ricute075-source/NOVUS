@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="./CSS/main.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin:0px 40px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #34495e;
+      margin-top: 20px;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="CSS/QuanLyPopup.css" />
+    <link rel="stylesheet" href="CSS/phanbodytrangchu.css" />
+
+    <header></header>
+    <script src="./JS/header.js"></script>
+<br>
+
+      <h1>ĐIỀU KHOẢN CỘNG ĐỒNG & NGƯỜI DÙNG</h1>
+
+  <div class="section">
+    <h2>1. Mục đích</h2>
+    <p>Trang web được xây dựng với mục tiêu kết nối người tìm việc và nhà tuyển dụng/doanh nghiệp một cách nhanh chóng, minh bạch và an toàn. Việc sử dụng trang web đồng nghĩa với việc bạn đồng ý tuân thủ toàn bộ điều khoản này.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Quy định chung</h2>
+    <ul>
+      <li>Người dùng phải đủ 18 tuổi trở lên và có năng lực hành vi dân sự đầy đủ.</li>
+      <li>Mọi thông tin đăng tải (hồ sơ, bài tuyển dụng, mô tả công việc, thông tin liên hệ,...) phải chính xác, trung thực và hợp pháp.</li>
+      <li>Người dùng tự chịu trách nhiệm về nội dung mình đăng tải.</li>
+      <li>Trang web không chịu trách nhiệm pháp lý cho bất kỳ tranh chấp nào phát sinh giữa người tìm việc và nhà tuyển dụng.</li>
+      <li>Với các công việc có (chưa kiểm chứng) chúng tôi sẽ không cập nhật avatar và không chịu trách nghiệm với thông tin đăng tải</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. Hành vi bị cấm</h2>
+    <ul>
+      <li>Đăng tải nội dung sai sự thật, xuyên tạc, xúc phạm, phân biệt đối xử hoặc mang tính quấy rối.</li>
+      <li>Giả mạo danh tính của người khác hoặc doanh nghiệp khác.</li>
+      <li>Đăng tin tuyển dụng lừa đảo, yêu cầu phí ứng tuyển, hoặc các hành vi vi phạm pháp luật.</li>
+      <li>Sử dụng trang web để quảng cáo, spam hoặc phát tán virus/mã độc.</li>
+      <li>Lợi dụng hệ thống để thu thập dữ liệu người dùng trái phép.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Quyền và trách nhiệm của người dùng</h2>
+    <ul>
+      <li>Người dùng có quyền tạo tài khoản, đăng hồ sơ tìm việc hoặc đăng tin tuyển dụng theo quy định của trang web.</li>
+      <li>Người dùng có trách nhiệm bảo mật tài khoản và thông báo ngay khi phát hiện hành vi truy cập trái phép.</li>
+      <li>Mọi hành động gây ảnh hưởng tiêu cực đến cộng đồng sẽ bị tạm khóa hoặc xóa tài khoản mà không cần báo trước.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. Quyền của trang web</h2>
+    <ul>
+      <li>Trang web có quyền duyệt, chỉnh sửa, từ chối hoặc gỡ bỏ bất kỳ nội dung nào vi phạm quy định.</li>
+      <li>Có thể tạm ngừng hoặc chấm dứt cung cấp dịch vụ trong trường hợp người dùng vi phạm hoặc vì lý do kỹ thuật, bảo trì.</li>
+      <li>Có quyền thu thập và sử dụng dữ liệu người dùng (theo chính sách bảo mật) để cải thiện trải nghiệm dịch vụ.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Giới hạn trách nhiệm</h2>
+    <ul>
+      <li>Trang web chỉ đóng vai trò trung gian, không tham gia vào giao dịch giữa người tìm việc và nhà tuyển dụng.</li>
+      <li>Không đảm bảo mọi thông tin từ người dùng là hoàn toàn chính xác.</li>
+      <li>Không chịu trách nhiệm cho thiệt hại do việc sử dụng, hiểu sai hoặc lạm dụng thông tin từ hệ thống.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>7. Thay đổi điều khoản</h2>
+    <p>Trang web có thể cập nhật hoặc sửa đổi điều khoản bất kỳ lúc nào. Các thay đổi sẽ có hiệu lực kể từ khi được công bố.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. Liên hệ</h2>
+    <p>Nếu có thắc mắc hoặc khiếu nại, vui lòng liên hệ qua email hỗ trợ: <strong>novustuyendung@gmail.com</strong></p>
+  
+</div>
+
+
+
+        <footer>
+    </footer>
+    <script src="./JS/footer.js"></script>
+
+    
+    <script src="JS/nhac.js"></script>
+    <script src="JS/quanlyvieclam.js"></script>
+
+    <script src="JS/nutbam.js"></script>
+    <script src="JS/SuLyDangNhap.js"></script>
+    <script src="JS/DangNhapGG.js"></script>
+    <script src="JS/SuLyPopup.js"></script>
+
+
+
+
+  </body>
+</html>

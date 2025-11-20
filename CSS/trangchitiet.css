@@ -1,0 +1,344 @@
+/* --- CẤU TRÚC CHUNG & RESET --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f5f7fa; /* Thêm màu nền nhẹ cho đẹp */
+}
+
+/* --- SEARCH BOX --- */
+.item_1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 15px; /* Đệm lề để không sát mép màn hình nhỏ */
+}
+
+.search-box {
+  width: 100%;
+  max-width: 1012px; /* Giới hạn chiều rộng tối đa */
+  height: 58px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 50px;
+  padding: 0 8px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
+  margin:0 auto;
+    margin-top: 30px;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding-left: 16px;
+  overflow: hidden; /* Tránh tràn */
+}
+
+.search-icon {
+  font-size: 18px;
+  margin-right: 12px;
+  color: #999;
+}
+
+.search-box input[type="text"] {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+  min-width: 0; /* Quan trọng cho flex item */
+}
+
+.nuttimkiem {
+  height: 42px;
+  background-color: #0073e6;
+  color: white;
+  border: 1px solid #c3bbbb;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100px;
+  flex-shrink: 0; /* Không bị co lại */
+}
+
+.nuttimkiem:hover {
+  background-color: #518cc7;
+}
+
+/* --- BANNER --- */
+.banner {
+  background-color: #cceeff;
+  color: #003366;
+  font-size: clamp(20px, 4vw, 28px); /* Chữ co giãn theo màn hình */
+  font-weight: 1000;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 95%; /* Chiếm 95% màn hình */
+  max-width: 1217px; /* Không vượt quá 1217px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.preserve {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* --- BỐ CỤC CHÍNH (2 CỘT) --- */
+.divtongitem {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.item_2 {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1217px;
+}
+
+/* Cột trái */
+.left-column {
+  flex: 2; /* Chiếm 2 phần */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%; /* Đảm bảo full width trên mobile */
+  min-width: 0; /* Tránh flex overflow */
+}
+
+/* Cột phải */
+.right-column {
+  flex: 1; /* Chiếm 1 phần */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  min-width: 280px; /* Đảm bảo không quá nhỏ */
+}
+
+/* --- KHỐI CÔNG VIỆC CHÍNH --- */
+.job {
+  background-color: #e6f7ff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 25px;
+}
+
+/* Thông tin chi tiết (Lương, Địa điểm...) */
+.job-info {
+  display: flex;
+  flex-wrap: wrap; /* Tự xuống dòng khi hết chỗ */
+  gap: 20px;
+  width: 100%;
+  justify-content: space-between; /* Căn đều */
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff; /* Đổi nền trắng cho nổi bật */
+  padding: 10px;
+  border-radius: 8px;
+  flex: 1 1 150px; /* Co giãn linh hoạt */
+  min-width: 140px;
+}
+
+.info-item img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.text .label {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.text .value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0077b6;
+  margin: 0;
+  white-space: normal !important; /* Cho phép xuống dòng nếu địa chỉ dài */
+}
+
+/* --- NÚT HÀNH ĐỘNG --- */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* Xuống dòng trên mobile */
+}
+
+.apply {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  flex: 1; /* Chiếm phần lớn */
+  min-width: 200px;
+  height: 44px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.apply:hover {
+  background-color: #0056b3;
+}
+
+/* --- MÔ TẢ CÔNG VIỆC --- */
+#description {
+  background: #e6f7ff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#description h2 {
+  color: #003366;
+  margin-top: 20px;
+  font-size: 18px;
+  border-bottom: 1px solid #b3d7ff;
+  padding-bottom: 8px;
+}
+
+/* --- THÔNG TIN CÔNG TY (Bên phải) --- */
+.o2 {
+  background-color: #e6f7ff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.o22 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.logocty {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.o222 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* --- CÔNG VIỆC LIÊN QUAN --- */
+.Tinlienquan {
+  background-color: #e6f7ff;
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Tinlienquan h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #003366;
+}
+
+.job-item2 {
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.job-item2:first-child {
+  border-top: none;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* Tablet & Mobile (Dưới 1024px) */
+@media (max-width: 1024px) {
+  .item_2 {
+    flex-direction: column; /* Chuyển thành 1 cột dọc */
+  }
+
+  .left-column, .right-column {
+    max-width: 100%;
+    flex: auto;
+  }
+  
+  .job-info {
+    justify-content: flex-start;
+  }
+}
+
+/* Mobile (Dưới 600px) */
+@media (max-width: 600px) {
+  .search-box {
+    height: 50px;
+  }
+  
+  .nuttimkiem {
+    width: 50px; /* Thu nhỏ nút tìm kiếm */
+    padding: 0;
+  }
+  
+  .nuttimkiem img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .job {
+    padding: 20px;
+  }
+
+  .job-title {
+    font-size: 20px;
+  }
+
+  .info-item {
+    width: 100%; /* Thông tin xếp dọc từng dòng */
+    flex: 1 1 100%;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .apply {
+    width: 100%;
+  }
+  
+  #description {
+    padding: 20px;
+  }
+}

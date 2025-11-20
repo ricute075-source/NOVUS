@@ -1,0 +1,171 @@
+
+footer {
+  padding-top:40px;
+  color: #000;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+}
+.lienhe
+{
+  font-size: 18px;
+}
+
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: center;
+}
+
+.footer-container1
+{
+  max-width: 113px;
+  width: 100%;
+}
+
+.footer-container2
+{
+  align-items: center; 
+  justify-content: space-between; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 19px;
+  max-width: 1104px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+.thestrong
+{
+  text-align: center; 
+  font-size: 18px;
+}
+
+
+.hr
+{
+  max-width: 1200px;
+  width: 100%;
+}
+
+
+.h3
+{
+  font-size: 18px;
+  white-space:nowrap;
+}
+
+.fsize18
+{
+  font-size: 18px;
+}
+
+.fsize14new
+{
+  text-decoration: none;
+  color: #000080; 
+  font-size: 14px
+}
+
+
+.div-footer1,
+.div-footer2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 131px;
+}
+
+.footer-section1 {
+  display: flex;
+  justify-content: space-between;
+  width: 711px;
+  height: 99px;
+  text-align: left;
+}
+
+.footer-section2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1144px;
+  height: 102px;
+}
+
+.fsize14
+{
+  font-size: 14px;
+}
+
+.footer-container1 p,
+a {
+  display: block;
+  max-width: 203px;
+
+}
+
+.center-footer {
+  background-color: #edf9ff;
+  padding-bottom: 10px;
+  width: 10220px;
+  height: 291px;
+}
+
+
+/* === FOOTER MOBILE (max-width: 768px) === */
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    padding: 20px 10px;
+  }
+
+  .div-footer1,
+  .div-footer2,
+  .footer-section1,
+  .footer-section2,
+  .center-footer {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-main {
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-container1 p,
+  .footer-container1 a {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+}
+
+/* === FOOTER EXTRA SMALL (max-width: 480px) === */
+@media (max-width: 480px) {
+  footer {
+    font-size: 12px;
+    padding: 15px 5px;
+  }
+
+  .footer-container1 p,
+  .footer-container1 a {
+    font-size: 12px;
+  }
+
+  .tieudenoibat {
+    font-size: 18px;
+  }
+    .anchan
+  {
+    display: none;
+  }
+}

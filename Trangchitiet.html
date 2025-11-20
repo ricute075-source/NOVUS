@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="./CSS/main.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="CSS/QuanLyPopup.css" />
+    
+
+            <link href="CSS/trangchitiet.css" rel="stylesheet" />
+
+    <header></header>
+    <script src="../JS/header.js"></script>
+    <main>
+        <div class="search-box">
+          <div class="search-input-wrapper">
+            <span class="search-icon"></span>
+            <input id="searchInput" type="text" placeholder="Hãy nhập một từ khóa(chỉ hiện các công việc đã kiểm chứng)" />
+          </div>
+          <button class="nuttimkiem" id="searchBtn">
+            <img src="Img/kinhlup.png" class="anh2424" />
+          </button>
+            <div id="searchResults" class="search-results" aria-expanded="false"></div>
+        </div>
+      <div class="banner" id="title">Tên Công Việc</div>
+<div class="divtongitem">
+      <div class="item_2">
+        <!-- Cột trái -->
+        <div class="left-column">
+          <div class="job">
+            <p class="job-title" id="title2">Tên Công Việc</p>
+            <div class="job-info">
+              <div class="info-item">
+                <img src="Img/tien2.png" alt="Mức lương" />
+                <div class="text">
+                  <p class="label">Mức lương</p>
+                  <p class="value" id="salary">15 - 20 triệu</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <img src="Img/vitri.png" alt="Địa điểm" />
+                <div class="text">
+                  <p class="label" >Địa điểm</p>
+                  <p class="value" id="location" style="white-space: nowrap;">Hồ Chí Minh</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <img src="Img/thoigian.png" alt="Địa điểm" />
+                <div class="text">
+                  <p class="label">Hạn Nộp Hồ Sơ</p>
+                  <p class="value" id="expiry"></p>
+                </div>
+              </div>
+            </div>
+            <div class="action-buttons">
+<button class="apply" id="applyBtn">Ứng tuyển ngay</button>
+
+            </div>
+          </div>
+
+          <div id="description">
+
+              <h2>Mô tả công việc</h2>
+<div id="jobDetail" class="preserve"></div>
+
+
+              <h2>Yêu cầu công việc</h2>
+ <div id="request" class="preserve"></div>
+
+
+              <h2>Quyền Lợi</h2>
+<div id="benefits" class="preserve"></div>
+
+
+            <section>
+              <h2>Địa điểm làm việc cụ thể</h2>
+              <p id="address"></p>
+            </section>
+
+            <section>
+              <h2>Cách ứng tuyển</h2>
+              <p>
+                <span id="howtoapply"></span>
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <!-- Cột phải -->
+        <div class="right-column">
+          <div class="o2">
+            <div class="o22">
+              <img src="Img/fpt.png" alt="Logo công ty" class="logocty" />
+              <p class="o222" id="title3">Tên Công Ty</p>
+            </div>
+            <div>
+              <p>Quy mô:<span  id="quymo"></span> người</p>
+              <p>Lĩnh vực:
+              <span id="field"></span></p>
+              <p >Địa chỉ:<strong><span id="location2"></span></strong></p>
+            </div>
+          </div>
+
+
+
+          <div class="Tinlienquan">
+            <h2>Công việc liên quan</h2>
+            <div class="job-item2">
+              <h3>Vui Lòng Đợi CHúng Tôi Cập Nhật</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    </main>
+
+    
+    <footer>
+    </footer>
+    <script src="./JS/footer.js"></script>
+
+<script>
+    async function loadRelatedJobs() {
+    const MAX_JOBS = 3;
+    
+    // SỬA LỖI: Dùng querySelector để tìm đúng class do bạn cung cấp
+    const container = document.querySelector(".Tinlienquan .job-item2");
+
+    if (!container) {
+        console.warn("Không tìm thấy container '.Tinlienquan .job-item2' để tải việc liên quan.");
+        return;
+    }
+    
+    // THÊM MỚI: Thêm class 'jobs-grid-related' để CSS có thể tạo 3 cột
+    container.classList.add("jobs-grid-related");
+
+
+    try {
+        // Tải cả hai file JSON (giống như trên trang chủ)
+        const res1 = await fetch("JSon/jobs3.json", { cache: "no-cache" });
+        const res2 = await fetch("JSon/jobs4.json", { cache: "no-cache" });
+
+        const jobs1 = res1.ok ? await res1.json() : [];
+        const jobs2 = res2.ok ? await res2.json() : [];
+
+        // Gộp tất cả jobs lại
+        let allJobs = (Array.isArray(jobs1) ? jobs1 : []).concat(
+            Array.isArray(jobs2) ? jobs2 : []
+        );
+
+        if (allJobs.length === 0) {
+            container.innerHTML = "<h3>Không tìm thấy công việc liên quan.</h3>";
+            return;
+        }
+
+        // --- Logic chọn 3 jobs ngẫu nhiên ---
+        
+        // 1. Xáo trộn mảng
+        const shuffledJobs = allJobs.sort(() => 0.5 - Math.random());
+        
+        // 2. Lấy 3 job đầu tiên
+        const relatedJobs = shuffledJobs.slice(0, MAX_JOBS);
+
+        // 3. Tạo HTML (sử dụng class từ main-styles.css)
+        const jobsHTML = relatedJobs.map(job => {
+            // Chuẩn hóa dữ liệu từ 2 file
+            const id = job.id;
+            const logo = job.logo || "matdinh.png"; // Cần 1 logo mặc định
+            const title = job.nghe || job.title || "Chưa có tiêu đề";
+            const company = job.cty || job.company || "Công ty ẩn danh";
+            const location = job.daichi || job.location || "Nhiều nơi";
+            const salary = job.luong || job.salary || "Thỏa thuận";
+
+            // Dùng cấu trúc HTML "job-card" từ file CSS chính của bạn
+            return `
+            <article class="job-card" onclick="window.location.href='Trangchitiet.html?id=${encodeURIComponent(id)}'">
+                <div class="top">
+                    <div class="logo"><img src="Img/${logo}" alt="${company}" class="logocv"></div>
+                    <div>
+                        <p class="company">${company}</p>
+                        <p class="location">${location}</p>
+                    </div>
+                </div>
+                <h3 class="job-title">${title}</h3>
+                <div class="footer">
+                    <div class="salary">${salary}</div>
+                    <button class="apply-btn" type="button" onclick="applyNow(event)">Ứng tuyển</button>
+                </div>
+            </article>
+            `;
+        }).join("");
+
+        // 4. Chèn vào container
+        container.innerHTML = jobsHTML;
+
+    } catch (err) {
+        console.error("Lỗi khi tải công việc liên quan:", err);
+        container.innerHTML = "<h3>Có lỗi xảy ra khi tải.</h3>";
+    }
+}
+
+// Hàm applyNow (để ngăn click nổi bọt)
+// (Hàm này đã có ở trang chủ, bạn có thể cần nó ở đây nếu chưa có)
+function applyNow(event) {
+  event.stopPropagation(); // <-- Ngăn click lan ra thẻ <article>
+  window.location.href = "UngTuyen.html";
+}
+
+
+// Chạy hàm này khi trang được tải
+document.addEventListener("DOMContentLoaded", loadRelatedJobs);
+
+    </script>
+    <script src="JS/trangchitiet.js"></script>
+    
+    <script src="JS/nhac.js"></script>
+    <script src="JS/quanlyvieclam.js"></script>
+    
+    <script src="JS/nutbam.js"></script>
+    <script src="JS/SuLyDangNhap.js"></script>
+    <script src="JS/DangNhapGG.js"></script>
+    <script src="JS/SuLyPopup.js"></script>
+
+  </body>
+</html>
+

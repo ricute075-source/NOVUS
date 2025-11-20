@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="./CSS/main.css" />
+    <link rel="stylesheet" href="CSS/chi_tiet_bai_blog.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="CSS/QuanLyPopup.css" />
+    <link rel="stylesheet" href="CSS/phanbodytrangchu.css" />
+
+
+
+    <header></header>
+    <script src="./JS/header.js"></script>
+
+
+
+
+    <main class="blog-container">
+        <!-- Tiêu đề chính của bài viết -->
+        <h1>Tại sao nhà tuyển dụng bỏ qua CV của bạn chỉ sau 6 giây?</h1>
+        
+        <!-- Thông tin đăng tải (Đã cập nhật) -->
+        <p class="post-meta">
+            Posted by: <strong>Hồng Cường</strong> | Ngày đăng: 18/11/2025
+        </p>
+
+        <!-- Mới: Wrapper cho Mục Lục -->
+        <div class="toc-wrapper">
+            <!-- Đường thẳng màu (tạo từ CSS) -->
+            <div class="toc-line"></div>
+            
+            <!-- Mục lục (Đã cập nhật cấu trúc lồng nhau) -->
+            <div class="table-of-contents">
+                <h2>MỤC LỤC</h2>
+                <ol>
+                    <!-- KHÔI PHỤC CẤU TRÚC LỒNG NHAU -->
+                    <li>
+                        <a href="#section1">I. Những "tử huyệt" khiến CV bị loại ngay lập tức</a>
+                        <ol>
+                            <li><a href="#section1-1">1. Bố cục rối rắm, trình bày dạng văn xuôi</a></li>
+                            <li><a href="#section1-2">2. Thông tin quan trọng bị đặt sai chỗ</a></li>
+                            <li><a href="#section1-3">3. Thiếu từ khóa (Keywords) chuyên ngành</a></li>
+                            <li><a href="#section1-4">4. Sự cẩu thả trong hình thức</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#section2">II. Giải pháp và lời khuyên thực tế để "hack" 6 giây vàng ngọc</a>
+                        <ol>
+                            <li><a href="#section2-1">1. Tối ưu hóa "Vùng Đất Vàng" (Top-fold)</a></li>
+                            <li><a href="#section2-2">2. Sử dụng định dạng "Skimmable" (Dễ lướt)</a></li>
+                            <li><a href="#section2-3">3. Kỹ thuật "Soi gương" từ khóa</a></li>
+                            <li><a href="#section2-4">4. Chứng minh năng lực bằng con số</a></li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Phần I của bài viết -->
+        <section id="section1">
+            <p>Bạn đã bao giờ tự hỏi tại sao mình gửi đi hàng chục CV nhưng không nhận được hồi âm? Theo nghiên cứu nổi tiếng từ The Ladders, nhà tuyển dụng trung bình chỉ mất 6 giây để quét qua một hồ sơ. Nếu trong khoảng thời gian ngắn ngủi đó, CV của bạn không "bắt" được mắt họ, nó sẽ bị loại ngay lập tức.</p>
+            <p>Dưới đây là phân tích chi tiết về lý do và cách khắc phục.</p>
+
+            <h2>I. Những "tử huyệt" khiến CV bị loại ngay lập tức</h2>
+            <p>Trong 6 giây định mệnh, nhà tuyển dụng không đọc để "hiểu" bạn, họ đọc để "loại" bạn. Đây là 4 lỗi phổ biến nhất:</p>
+            <h3 id="section1-1">1. Bố cục rối rắm, trình bày dạng văn xuôi</h3>
+            <p>Nhà tuyển dụng không có thời gian để đọc từng chữ. Não bộ con người có xu hướng bỏ qua những khối văn bản dày đặc (wall of text). Nếu CV của bạn viết tràn lan đại hải, không phân chia đoạn, không có khoảng trắng, nhà tuyển dụng sẽ cảm thấy "ngộp" và lướt qua ngay.</p>
+
+            <h3 id="section1-2">2. Thông tin quan trọng bị đặt sai chỗ</h3>
+            <p>Trong 6 giây đầu, mắt người đọc đi theo hình chữ F. Theo thói quen đọc lướt, mắt người sẽ tập trung nhiều nhất vào 1/3 phía trên cùng của trang giấy. Nếu bạn để Kinh nghiệm làm việc hoặc Kỹ năng nổi bật xuống cuối trang, hoặc bị che khuất bởi phần "Sở thích" không liên quan, bạn đã mất đi cơ hội gây ấn tượng đầu tiên.</p>
+            <img src = "Img/rot-phong-van-xin-viec-vi-sao-careerbuilder.jpg" alt="Rớt phỏng vấn xin việc" class="post-image">
+            <h3 id="section1-3">3. Thiếu từ khóa (Keywords) chuyên ngành</h3>
+            <p>Nhiều công ty sử dụng phần mềm lọc CV tự động (ATS) hoặc nhà tuyển dụng sẽ quét mắt tìm các từ khóa có trong bản mô tả công việc (JD). Nếu JD yêu cầu "Quản lý dự án", "Python", hay "Sales B2B" mà CV của bạn không xuất hiện các từ này, bạn sẽ bị đánh giá là không phù hợp (unqualified).</p>
+        
+            <h3 id = "section1-4">4. Sự cẩu thả trong hình thức</h3>
+            <p>Một lỗi chính tả nhỏ, font chữ không đồng nhất (lúc dùng Arial, lúc dùng Times New Roman), hoặc căn lề xiêu vẹo là minh chứng rõ nhất cho việc thiếu chuyên nghiệp. Không ai muốn tuyển một nhân viên cẩu thả ngay từ bước chào hỏi.</p>
+        </section>
+
+        <!-- Phần II của bài viết -->
+        <section id="section2">
+            <h2>II. Giải pháp và lời khuyên thực tế để "hack" 6 giây vàng ngọc</h2>
+
+            <img src="Img/phong_van_thanh_cong.png" alt="Phỏng vấn tuyển dụng" class="post-image">
+
+            <h3 id="section2-1">1. Tối ưu hóa "Vùng Đất Vàng" (Top-fold)</h3>
+            <p>Hãy đảm bảo 1/3 đầu trang CV chứa đầy đủ các thông tin "đắt giá" nhất:
+                <ul>
+                    <li><strong>Họ tên và thông tin liên lạc:</strong> Đặt ở vị trí dễ thấy nhất.</li>
+                    <li><strong>Chức danh nghề nghiệp:</strong> Ngay dưới tên, thể hiện rõ bạn là ai.</li>
+                    <li><strong>Tóm tắt chuyên môn (Professional Summary):</strong> Một đoạn ngắn gọn (2-3 câu) nêu bật kỹ năng và kinh nghiệm chính của bạn.</li>
+                </ul>
+            </p>
+
+            <h3 id="section2-2">2. Sử dụng định dạng "Skimmable" (Dễ lướt)</h3>
+            <p>
+                Để giúp nhà tuyển dụng dễ dàng "lướt" qua CV trong 6 giây, hãy áp dụng các kỹ thuật sau:
+                <ul>
+                    <li><strong>Danh sách gạch đầu dòng (Bullet Points):</strong> Thay vì viết đoạn văn dài, hãy sử dụng bullet points để liệt kê thành tích và kỹ năng.</li>
+                    <li><strong>Tiêu đề phụ rõ ràng:</strong> Sử dụng các tiêu đề phụ như "Kinh nghiệm làm việc", "Học vấn", "Kỹ năng" để phân chia nội dung.</li>
+                    <li><strong>Khoảng trắng hợp lý:</strong> Đảm bảo có đủ khoảng trắng giữa các phần để tránh cảm giác rối mắt.</li>
+                </ul>
+            </p>
+
+            <h3 id="section2-3">3. Kỹ thuật "Soi gương" từ khóa</h3>
+            <p>Hãy mở bản mô tả công việc (JD) ra, liệt kê 3-5 kỹ năng hoặc yêu cầu quan trọng nhất mà họ nhắc đi nhắc lại. Sau đó, lồng ghép khéo léo các từ khóa đó vào phần Kỹ năng hoặc Kinh nghiệm làm việc của bạn (có thể bôi đậm nhẹ để làm nổi bật).</p>
+            <img src = "Img/ky-nang-tra-loi-phong-van-xin-viec.jpg" alt="Kỹ năng trả lời phỏng vấn xin việc" class="post-image">
+            <h3 id="section2-4">4. Chứng minh năng lực bằng con số</h3>
+            <p>
+                Thay vì chỉ liệt kê nhiệm vụ, hãy tập trung vào thành tích cụ thể. Sử dụng con số để minh họa hiệu quả công việc của bạn, ví dụ:
+                <ul>
+                    <li>"Tăng doanh số bán hàng lên 30% trong vòng 6 tháng."</li>
+                    <li>"Quản lý dự án với ngân sách 100 triệu đồng, hoàn thành đúng hạn."</li>
+                    <li>"Giảm thời gian xử lý đơn hàng từ 5 ngày xuống còn 2 ngày."</li>
+                </ul>
+            </p>
+        </section>
+
+<section>
+            <br>
+            <hr style="border-top: 1px solid #eee;">
+            <p style="color: rgb(3, 121, 252);"><strong>Lời kết:</strong></p>
+            <p>6 giây là rất ngắn, nhưng đủ để bạn thể hiện sự chuyên nghiệp và tư duy logic. Hãy biến CV của mình thành một bản "tiếp thị bản thân" sắc bén, gọn gàng và đi thẳng vào vấn đề.</p>
+        </section>
+
+     <footer>
+    </footer>
+    <script src="./JS/footer.js"></script>
+
+    
+    <script src="JS/nhac.js"></script>
+    <script src="JS/quanlyvieclam.js"></script>
+
+    <script src="JS/nutbam.js"></script>
+    <script src="JS/SuLyDangNhap.js"></script>
+    <script src="JS/DangNhapGG.js"></script>
+    <script src="JS/SuLyPopup.js"></script>
+
+
+  </body>
+</html>

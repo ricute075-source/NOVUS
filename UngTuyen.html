@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="./CSS/main.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+
+    <link rel="stylesheet" href="CSS/QuanLyPopup.css" />
+
+    <link rel="stylesheet" href="CSS/phanbodytrangchu.css" />
+
+    <link rel="stylesheet" href="CSS/Ungtuyen.css" />
+
+
+
+
+
+    <header></header>
+
+    <script src="./JS/header.js"></script>
+
+        <p class ="tieu_de" >Ứng tuyển</p>
+
+<form class="phan_khung" onsubmit="return nopHoSo(event)"> 
+
+            <div class ="nop_cv">
+
+                <p class = "huong_dan">Nộp CV để ứng tuyển</p>
+
+                <div class ="khung_nhap">
+
+                    <div class = "lua_chon">
+
+                    <img src ="Img/upload.png" alt="Upload icon">
+
+                    <p>Tải lên CV từ máy tính</p>
+
+                    </div>
+
+                    <div class = "chon_cv">
+
+<div class="chon_cv">
+
+  <input id="cvInput" type="file" name="cv" accept=".pdf,.doc,.docx" required>
+</div>
+
+
+
+                    </div>
+
+                    <div class = "nhac_nho">
+
+                        <p class = "loi_nhac">Vui lòng nhập đầy đủ thông tin:</p>
+
+                        <p class = "chu_y">thông tin bắt buộc(*)</p>
+
+                    </div>
+
+                        <div class ="ho_ten">
+
+      <p>Họ và tên<span class = "chu_y">*</span></p>
+
+                            <input id="fullname" required type="text" placeholder="Họ tên hiển thị với NTD">
+
+                        </div>
+
+                        
+
+                        <section class ="nhap_thong_tin">
+
+                        <div class = mail>
+
+                            <p>Email<span class = "chu_y">*</span></p>
+
+                            <input id="email" required type="text" placeholder="Email hiển thị với NTD">
+
+
+                        </div>
+
+                        <div class = dt>
+
+              <p>Số điện thoại<span class = "chu_y">*</span></p>
+
+                           <input id="phone" required type="text" placeholder="Số điện thoại hiển thị với NTD">
+
+
+
+                        </div>
+
+                        </section>
+
+                </div>
+
+            </div>
+
+            <div class ="thu_gt">
+
+                <p>Thư giới thiệu</p>
+
+                <textarea id="cover" placeholder="Viết giới thiệu ngắn gọn..."></textarea>
+            </div>
+
+            <div class ="huy_va_nop">
+
+<button class="huy" type="button" onclick="window.location.href='index.html'">Hủy</button>
+
+    <button class="nop" type="submit">Nộp hồ sơ ứng tuyển</button>
+
+
+
+            </div>
+
+        </form>
+
+        
+
+
+
+    <footer>
+
+    </footer>
+
+    <script src="./JS/footer.js"></script>
+
+
+
+    
+
+    <script src="JS/nhac.js"></script>
+
+    <script src="JS/quanlyvieclam.js"></script>
+
+
+
+    <script src="JS/nutbam.js"></script>
+
+    <script src="JS/SuLyDangNhap.js"></script>
+
+    <script src="JS/DangNhapGG.js"></script>
+
+    <script src="JS/SuLyPopup.js"></script>
+
+
+
+
+
+<script>
+  // Hàm lấy tham số trên URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Helper: Lưu thông báo cho một user cụ thể
+  function addNotificationForUser(recipientId, notif) {
+    if (!recipientId) return;
+    const key = 'notifs_' + recipientId;
+    try {
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.unshift(notif);
+      localStorage.setItem(key, JSON.stringify(arr.slice(0, 200)));
+      
+      // Phát tín hiệu để cập nhật giao diện ngay lập tức
+      window.dispatchEvent(new CustomEvent('app:notification-added-for-user', {
+        detail: { recipientId, notif }
+      }));
+      
+      // Kích hoạt sự kiện storage để các tab khác nhận biết
+      localStorage.setItem('trigger_reload_notif', Date.now().toString());
+    } catch (e) {
+      console.warn('Lỗi lưu thông báo:', e);
+    }
+  }
+
+  // --- HÀM XỬ LÝ NỘP HỒ SƠ CHÍNH ---
+  function nopHoSo(e) {
+    e.preventDefault();
+    const submitButton = document.querySelector('.nop');
+
+    // 1. Kiểm tra quyền: NTD không được nộp
+    const role = (localStorage.getItem("role") || "").toLowerCase();
+    if (role === "ntd") {
+      alert("❌ Tài khoản Nhà Tuyển Dụng không thể nộp hồ sơ ứng tuyển.");
+      return false;
+    }
+
+    // 2. Lấy dữ liệu Công việc và ID Nhà tuyển dụng
+    const jobData = JSON.parse(localStorage.getItem("currentJob")) || {};
+    
+    // Ưu tiên lấy ID từ URL, nếu không có thì lấy trong localStorage, cuối cùng là demo
+    let jobId = getQueryParam('jobId') || jobData.id || 'job_demo';
+    let ntdId = getQueryParam('ntdId') || jobData.ntdId;
+
+    // Nếu vẫn chưa có ntdId (trường hợp test file lẻ), gán mặc định để test
+    if (!ntdId) {
+        console.warn("Không tìm thấy ntdId, chuyển sang chế độ Test.");
+        ntdId = "ADMIN_TEST"; 
+    }
+
+    const jobTitle = jobData.nghe || jobData.title || "Công việc (Chưa rõ tên)";
+    const company = jobData.cty || jobData.company || "Công ty (Ẩn danh)";
+
+    // 3. Lấy dữ liệu từ Form nhập liệu
+    const fullname = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const cover = document.getElementById('cover').value.trim();
+    
+    // Lấy tên file CV giả lập
+    const cvInput = document.getElementById('cvInput');
+    const cvName = cvInput.files.length > 0 ? cvInput.files[0].name : "cv_file.pdf";
+
+    // Validate Form
+    if (!fullname || !email || !phone) {
+       alert("Vui lòng nhập đầy đủ thông tin bắt buộc!");
+       return false;
+    }
+    
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) {
+      alert("❌ Email không hợp lệ");
+      document.getElementById('email').focus();
+      return false;
+    }
+
+    // Khóa nút để tránh bấm nhiều lần
+    submitButton.disabled = true;
+    submitButton.textContent = "Đang xử lý...";
+
+    try {
+      const currentUserId = localStorage.getItem('currentUserId') || 'khach_vang_lai';
+      const now = new Date().toISOString();
+      const newAppId = Date.now().toString(); // Tạo ID duy nhất cho hồ sơ này
+
+      // ===========================================================
+      // 4. LƯU DỮ LIỆU HỒ SƠ VÀO LOCALSTORAGE (QUAN TRỌNG)
+      // ===========================================================
+      const applicationData = {
+          id: newAppId,           // ID riêng của hồ sơ
+          jobId: jobId,
+          ntdId: ntdId,
+          candidateId: currentUserId,
+          
+          // Thông tin hiển thị bên trang chi tiết
+          fullname: fullname,
+          email: email,
+          phone: phone,
+          cover: cover,
+          cvName: cvName,
+          jobTitle: jobTitle,
+          company: company,
+          time: now,
+          status: 'pending' // Trạng thái: Chờ duyệt
+      };
+
+      // Lấy danh sách cũ ra, thêm cái mới vào đầu
+      let apps = JSON.parse(localStorage.getItem("applications") || "[]");
+      apps.unshift(applicationData); 
+      localStorage.setItem("applications", JSON.stringify(apps));
+
+      // ===========================================================
+      // 5. GỬI THÔNG BÁO CHO NHÀ TUYỂN DỤNG
+      // ===========================================================
+      // Tạo đường link dẫn thẳng tới trang chi tiết kèm ID hồ sơ
+      const linkToDetail = `chitietungvien.html?id=${newAppId}`;
+
+      addNotificationForUser(ntdId, {
+        title: 'Hồ sơ ứng tuyển mới',
+        message: `Ứng viên ${fullname} vừa nộp hồ sơ cho vị trí ${jobTitle}`,
+        time: now,
+        fromUserId: currentUserId,
+        link: linkToDetail, // Link bấm vào xem ngay
+        isRead: false
+      });
+
+      // ===========================================================
+      // 6. THÔNG BÁO VÀ LƯU LỊCH SỬ CHO ỨNG VIÊN
+      // ===========================================================
+      addNotificationForUser(currentUserId, {
+        title: 'Ứng tuyển thành công',
+        message: `Bạn đã nộp hồ sơ vào ${company}. Hãy chờ phản hồi nhé!`,
+        time: now,
+        fromUserId: 'system'
+      });
+
+      // Lưu lịch sử chung (nếu cần dùng cho trang danh sách)
+      let notifs = JSON.parse(localStorage.getItem("notifications") || "[]");
+      notifs.unshift({
+        title: 'Novus System',
+        message: `Bạn đã ứng tuyển cho ${jobTitle} tại ${company}`,
+        time: now
+      });
+      localStorage.setItem("notifications", JSON.stringify(notifs));
+
+      // Hiển thị thông báo thành công
+      alert("✅ Hồ sơ đã được gửi thành công!");
+      window.location.href = "index.html";
+
+    } catch (err) {
+      console.error("Lỗi khi xử lý:", err);
+      alert("❌ Đã có lỗi xảy ra. Vui lòng thử lại.");
+      submitButton.disabled = false;
+      submitButton.textContent = "Nộp hồ sơ ứng tuyển";
+    }
+
+    return false;
+  }
+</script>
+    </body>
+
+</html>

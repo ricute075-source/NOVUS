@@ -1,0 +1,1096 @@
+/* =============================
+
+    THIẾT LẬP CƠ BẢN
+
+   ============================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+html { 
+
+    font-size: 16px; 
+
+    scroll-behavior: smooth;
+
+}
+
+
+
+body {
+
+    font-family: 'Inter', sans-serif;
+
+    line-height: 1.6;
+
+    color: #333;
+
+    overflow-x: hidden;
+
+    background: #F8FBFD; /* Thêm màu nền nhạt */
+
+}
+
+
+
+.container {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 0 20px; /* Thêm padding 2 bên */
+
+}
+
+
+
+/* =============================
+
+    PHẦN BANNER CHÍNH
+
+   ============================= */
+
+.hero {
+
+    background: radial-gradient(circle at center , #FFFFFF 0%, #FFFFFF 40%,   #39BAFF 100%);
+
+    overflow: hidden;
+
+    width: 100%;
+
+    height: auto; /* Sửa: Chiều cao tự động */
+
+    padding-top: 50px;
+
+    position: relative; /* Thêm position relative */
+
+}
+
+
+
+.hero-background {
+
+    position: absolute; /* Sửa: Định vị tuyệt đối */
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%; /* Sửa: 100% width */
+
+    height: 100%; /* Sửa: 100% height */
+
+    object-fit: cover;
+
+    opacity: 0.15; /* Sửa: Giảm opacity */
+
+    z-index: 0;
+
+}
+
+
+
+.hero-content-wrapper {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 0 20px;
+
+}
+
+
+
+.hero-content {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 200px;
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+
+
+.whale-icon {
+
+    width: 80px;
+
+    height: auto;
+
+    animation: float 3s ease-in-out infinite;
+
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+
+}
+
+
+
+.whale-right { animation-delay: 1.5s; }
+
+
+
+@keyframes float {
+
+    0%, 100% { transform: translateY(0); }
+
+    50% { transform: translateY(-20px); }
+
+}
+
+
+
+.hero-main { 
+
+    flex: 1; 
+
+    text-align: center; 
+
+    z-index: 2; 
+
+}
+
+
+
+.hero-title {
+
+    font-size: clamp(2rem, 5vw, 2.75rem); /* 44px (Tự co giãn) */
+
+    font-weight: 900;
+
+    color: #0066B3;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+    font-family: 'Inter'; 
+
+}
+
+
+
+.hero-subtitle {
+
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* 20px */
+
+    font-weight: 900;
+
+    color: #0066B3;
+
+    letter-spacing: 1px;
+
+    font-family: 'Inter';
+
+}
+
+
+
+.person-main {
+
+    width: 100%; /* Sửa: 100% */
+
+    max-width: 430px; /* Sửa: max-width */
+
+    height: auto;
+
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+
+}
+
+
+
+/* =============================
+
+    PHẦN NỘI DUNG CHÍNH
+
+   ============================= */
+
+.khungnoidung {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 0 20px;
+
+    justify-content: center;
+
+}
+
+
+
+.bvnbbvhd {
+
+    height: auto;
+
+    display: flex;
+
+    gap: 30px; /* Sửa: Tăng gap */
+
+    margin-top: 37px;
+
+    align-items: flex-start;
+
+    margin-bottom: 58px;
+
+}
+
+
+
+.baivietnoibat {
+
+    flex: 2; /* Sửa: Chiếm 2 phần */
+
+
+
+    border: 1px solid #9b9b9b;
+
+    border-radius: 2px;
+
+    height: auto;
+
+    padding: 23px 20px 21px 20px; /* Sửa: Thêm padding 2 bên */
+
+    max-width: 600px;
+    width: 600px;
+
+}
+
+
+
+.tieudenoibat {
+
+    color: #0379FC;
+
+    font-family: 'Raleway', sans-serif;
+
+    font-size: clamp(1.75rem, 4vw, 2.5rem); /* 40px (Tự co giãn) */
+
+    font-style: italic;
+
+    font-weight: bolder;
+
+    margin-bottom: 20px;
+
+    text-align: left;
+
+    line-height: 1.2;
+
+}
+
+
+
+.posts-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr; /* Sửa: 1 cột */
+
+    gap: 20px;
+
+    max-width: 100%;
+
+}
+
+
+
+.post-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s;
+
+    cursor: pointer;
+
+    display: flex;
+
+    overflow: hidden;
+
+    width: 100%; /* Sửa: 100% */
+
+    height: auto; /* Sửa: auto */
+
+}
+
+
+
+.post-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+}
+
+
+
+.post-image {
+
+    width: 150px; /* Sửa: Giảm width */
+
+    height: 140px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+}
+
+
+
+.post-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.3s;
+
+}
+
+
+
+.post-card:hover .post-image img { transform: scale(1.05); }
+
+
+
+.post-content {
+
+    padding: 15px 20px; /* Sửa: Thêm padding 2 bên */
+
+    flex: 1;
+
+}
+
+
+
+.post-title {
+
+    font-size: 1.1rem; /* Sửa: Giảm font (18px) */
+
+    font-weight: 800;
+
+    font-style: italic;
+
+    color: #0379fc;
+
+    line-height: 1.4;
+
+    font-family: 'Raleway', sans-serif;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
+}
+
+
+
+.post-meta {
+
+    width: auto;
+
+    height: 19px;
+
+    font-size: 12px; /* Sửa: Tăng font */
+
+    font-weight: 400;
+
+    color: #737373;
+
+    margin-top: 8px;
+
+    font-family: 'Inter';
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px; /* Sửa: Tăng gap */
+
+}
+
+.post-meta img {
+
+    width: 12px;
+
+    height: 12px;
+
+}
+
+
+
+.post-excerpt {
+
+    width: 100%; /* Sửa: 100% */
+
+    height: auto;
+
+    margin-top: 8px;
+
+    font-size: 13px; /* Sửa: Tăng font */
+
+    color: #737373;
+
+    font-style: italic;
+
+    font-weight: 600; /* Sửa: Giảm weight */
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
+}
+
+
+
+/* --- Bài viết hàng đầu --- */
+
+.baiviethangdau {
+
+    flex: 1; /* Sửa: Chiếm 1 phần */
+
+    max-width: 100%;
+
+    width: 100%;
+
+    height: auto;
+
+    border: 1px solid #9b9b9b;
+
+    border-radius: 2px;
+
+    padding: 15px; /* Sửa: Thêm padding */
+
+}
+
+.baiviethangdau article {
+
+    margin-bottom: 20px;
+
+}
+
+.baiviethangdau p {
+
+    margin-bottom: 13px;
+
+}
+
+.baiviethangdau img {
+
+    width: 100%; /* Sửa: 100% */
+
+    height: auto;
+
+    border-radius: 4px;
+
+}
+
+.daudebaiviet {
+
+    color: #0379FC;
+
+    font-style: italic;
+
+    line-height: 1.3;
+
+}
+
+.daudechinh {
+
+    font-size: 1.5rem; /* Sửa: 24px */
+
+    font-weight: 800;
+
+}
+
+.daudephu {
+
+    font-size: 1.1rem; /* Sửa: 18px */
+
+    font-weight: 800;
+
+}
+
+.tomtat {
+
+    text-align: justify;
+
+    font-size: 14px; /* Sửa: 14px */
+
+    font-style: italic;
+
+    font-weight: 500; /* Sửa: Giảm weight */
+
+    width: 100%; /* Sửa: 100% */
+
+    height: auto;
+
+    color: #737373;
+
+    padding: 5px 15px 5px 15px;
+
+}
+
+
+
+/* --- Bài viết mới nhất --- */
+
+.baivietmoinhat {
+
+    justify-content: center;
+
+    align-items: stretch; /* Sửa: Căn đều chiều cao */
+
+    width: 100%;
+
+    height: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px; /* Sửa: Tăng gap */
+
+} 
+
+
+.baiviet {
+
+    width: 100%;
+
+    height: auto;
+
+    margin-bottom: 0; /* Sửa: Bỏ margin, dùng gap */
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border-radius: 8px; /* Sửa: Thêm bo góc */
+
+    display: flex; /* Sửa: Dùng flex column */
+
+    flex-direction: column;
+
+}
+
+.baiviet button
+{
+    border: none;
+
+    background: none;
+
+    padding: 0;
+
+    margin: 0;
+
+    width: 100%;
+    max-width: 384px;
+    height: 305px;
+
+}
+
+.baiviet:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+}
+
+.anhbaiviet {
+
+    width: 100%;
+
+    height: 196px;
+
+    border-radius: 4px 4px 0 0; /* Sửa: Bo góc trên */
+
+    object-fit: cover;
+
+}
+
+
+.tieudebaiviet {
+
+    display: block;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    margin: 15px; /* Sửa: Dùng margin */
+
+    font-size: 1.1rem; /* 18px */
+
+    text-align: justify;
+
+    color: #666666;
+
+    width: auto; /* Sửa: Bỏ width */
+
+    height: auto; /* Sửa: Bỏ height */
+
+    line-height: 1.4;
+
+    flex: 1; /* Sửa: Đẩy ghi chú xuống dưới */
+
+}
+
+.tieudebaiviet:hover {
+
+    color: #0379FC;
+
+}
+
+
+.ghichu {
+
+    font-size: 14px; /* Sửa: 14px */
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px 15px 15px; /* Sửa: Thêm padding */
+
+    gap: 10px; /* Sửa: Thêm gap */
+
+}
+
+.tenguoidang {
+
+    font-size: 14px;
+
+    color: #3589FD;
+
+}
+
+.time {
+
+    font-size: 12px; /* Sửa: 12px */
+
+    display: flex;
+
+    align-items: center;
+
+    color: #737373;
+
+}
+
+.time img {
+
+    display: block;
+
+    width: 12px; /* Sửa: 12px */
+
+    height: auto;
+
+    margin-right: 4px; /* Sửa: Tăng margin */
+
+}
+
+.view {
+
+    font-size: 12px; /* Sửa: 12px */
+
+    display: flex;
+
+    align-items: center;
+
+    color: #737373;
+
+}
+
+.view img {
+
+    width: 14px; /* Sửa: 14px */
+
+    height: auto;
+
+    display: block;
+
+    margin-right: 3px;
+
+}
+
+.hieuungnoi {
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border-radius: 8px;
+
+} 
+
+.hieuungnoi:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+}
+
+
+
+/* =============================
+
+    RESPONSIVE
+
+   ============================= */
+
+
+
+/* === 📱 Tablet (≤ 992px) === */
+
+@media (max-width: 992px) {
+
+    .khungnoidung {
+
+        padding: 0 30px;
+
+    }
+
+
+
+    .bvnbbvhd {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+
+    .baivietnoibat, 
+
+    .baiviethangdau {
+
+        width: 100%;
+
+        height: auto;
+
+        max-width: 100%; /* Sửa: Bỏ max-width */
+
+    }
+
+
+
+    .posts-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    .hero-content {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 20px;
+
+        padding-top: 30px;
+
+    }
+
+    .hero {
+
+        height: auto;
+
+        padding-bottom: 30px;
+
+    }
+
+    .person-main {
+
+        width: 300px;
+
+        height: auto;
+
+    }
+
+
+
+    .baivietmoinhat {
+
+        grid-template-columns: repeat(2, 1fr);
+
+        width: 100%;
+
+    }
+
+
+
+    .baiviet {
+
+        width: 100%;
+
+    }
+
+
+
+    .tieudebaiviet {
+
+        width: auto;
+
+        height: auto;
+
+    }
+
+
+
+    .whale-icon {
+
+        display: none; /* Ẩn cá voi */
+
+    }
+
+}
+
+
+
+/* === 📱 Mobile (≤ 768px) === */
+
+@media (max-width: 768px) {
+
+    .khungnoidung {
+
+        padding: 0 20px;
+
+    }
+
+    
+
+    .hero-content {
+
+        padding-top: 20px;
+
+    }
+
+    .person-main {
+
+        width: 220px;
+        display: none;
+
+    }
+
+
+
+    .baivietmoinhat {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+    .baiviet img {
+
+        width: 100%;
+
+        height: auto;
+
+    }
+
+
+
+    .post-card { 
+
+        flex-direction: column; /* Xếp chồng ảnh và text */
+
+        height: auto;
+
+    }
+
+    .post-image { 
+
+        width: 100%; 
+
+        height: 180px; 
+
+    }
+
+    .post-content {
+
+        padding: 15px 20px;
+
+    }
+
+
+
+    .dangkiungtuyen {
+
+        padding: 1.5rem 2rem;
+
+    }
+
+}
+
+
+
+/* === 📱 Mobile nhỏ (≤ 480px) === */
+
+@media (max-width: 480px) {
+
+    .khungnoidung {
+
+        padding: 0 15px;
+
+    }
+
+    .bvnbbvhd {
+
+        gap: 20px;
+
+        margin-top: 20px;
+
+        margin-bottom: 40px;
+
+    }
+
+
+
+    .tieudenoibat {
+
+        font-size: 1.5rem; /* 24px */
+
+    }
+
+
+
+    .daudechinh {
+
+        font-size: 1.25rem; /* 20px */
+
+    }
+
+
+
+    .daudephu {
+
+        font-size: 1rem; /* 16px */
+
+    }
+
+
+
+    .baivietmoinhat {
+
+        gap: 15px;
+
+    }
+
+
+
+    .post-card {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        height: auto;
+
+    }
+
+
+
+    .post-image {
+
+        width: 100%;
+
+        height: 160px;
+
+    }
+
+    .post-title {
+
+        font-size: 1rem;
+
+    }
+
+
+
+    .post-excerpt {
+
+        width: 100%;
+
+        font-size: 12px;
+
+    }
+
+
+
+    .tomtat {
+
+        font-size: 13px;
+
+    }
+
+    .tieudebaiviet {
+
+        font-size: 1rem;
+
+    }
+
+    .ghichu {
+
+        font-size: 13px;
+
+    }
+
+    .tenguoidang {
+
+        font-size: 13px;
+
+    }
+
+}

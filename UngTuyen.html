@@ -203,10 +203,7 @@
     if (!isLogged || !currentUserId) {
         alert("⚠️ Bạn cần đăng nhập thành viên để nộp hồ sơ ứng tuyển!");
         
-        // Tự động mở popup đăng nhập nếu có (hàm từ header.js)
-        if (typeof openLoginPopup === 'function') {
-            openLoginPopup();
-        }
+
         return false; // Dừng hàm ngay lập tức
     }
 
